@@ -1570,6 +1570,23 @@ INPUT main.bbl
 INPUT ./main.bbl
 INPUT ./main.bbl
 INPUT main.bbl
+INPUT c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/color.sty
 INPUT ./main.out
 INPUT main.out
@@ -1590,25 +1607,8 @@ INPUT Text/0-frontmatter.tex
 INPUT ./Text/0-frontmatter.tex
 INPUT ./Text/0-frontmatter.tex
 INPUT Text/0-frontmatter.tex
-INPUT c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
 INPUT c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
@@ -1671,6 +1671,11 @@ INPUT ./Images/rotafromshaping.png
 INPUT Images/rotafromshaping.png
 INPUT ./Images/rotafromshaping.png
 INPUT ./Images/rotafromshaping.png
+INPUT ./Images/sphericalfield.png
+INPUT ./Images/sphericalfield.png
+INPUT Images/sphericalfield.png
+INPUT ./Images/sphericalfield.png
+INPUT ./Images/sphericalfield.png
 INPUT ./Text/4-Project Plan.tex
 INPUT ./Text/4-Project Plan.tex
 INPUT ./Text/4-Project Plan.tex
@@ -1704,5 +1709,6 @@ INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb

@@ -2352,6 +2352,14 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">Bibliography/Sources.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="2">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="3">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="4">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="5">mcinnes2003velocity</bcf:citekey>
+    <bcf:citekey order="6">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="7">mcinnes2003velocity</bcf:citekey>
+    <bcf:citekey order="8">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="9">mcinnes2003velocity</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

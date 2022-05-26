@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  26 MAY 2022 22:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  26 MAY 2022 23:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1263,7 +1263,15 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
- (./main.bbl)
+ (./main.bbl
+LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
+ (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
+ (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
 Package biblatex Info: Reference section=0 on input line 11.
 Package biblatex Info: Reference segment=0 on input line 11.
 Package hyperref Info: Link coloring ON on input line 11.
@@ -1272,15 +1280,7 @@ Package hyperref Info: Link coloring ON on input line 11.
 \openout7 = `main.out'.
 
 Package cleveref Info: loaded `english' language definitions on input line 12.
- (./Text/0-frontmatter.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
- (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
- (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./main.toc
+ (./Text/0-frontmatter.tex (./main.toc
 Package cleveref Info: loaded `english' language definitions on input line 2.
 )
 \tf@toc=\write8
@@ -1296,106 +1296,125 @@ Overfull \hbox (251.62206pt too wide) in paragraph at lines 39--42
 
 
 ]) (./Text/1-Introduction.tex
-<Images/threeway.png, id=63, 251.43938pt x 268.50313pt>
+Overfull \hbox (2.60056pt too wide) in paragraph at lines 14--15
+[]\OT1/cmr/m/n/10 Sensor Launch-ing [[][]1[][]]: Us-ing the en-ergy stored
+ []
+
+<Images/threeway.png, id=66, 251.43938pt x 268.50313pt>
 File: Images/threeway.png Graphic file (type png)
 <use Images/threeway.png>
 Package pdftex.def Info: Images/threeway.png  used on input line 19.
 (pdftex.def)             Requested size: 218.51521pt x 233.3418pt.
 
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./Text/2-Literature Review.tex
-Overfull \hbox (1.81546pt too wide) in paragraph at lines 7--7
+Overfull \hbox (1.81546pt too wide) in paragraph at lines 4--4
 []\OT1/cmr/m/it/10 Velocity field path-planning for sin-gle and mul-
  []
 
 
-Overfull \hbox (8.57281pt too wide) in paragraph at lines 13--15
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 4.
+
+
+Overfull \hbox (7.12839pt too wide) in paragraph at lines 5--7
+\OT1/cmr/m/n/10 In this pa-per [[][]1[][]], the au-thor presents a path-planning
+ []
+
+
+Overfull \hbox (8.57281pt too wide) in paragraph at lines 10--12
 \OT1/cmr/m/n/10 fields and Type 2 so-lu-tion are used to build solenoidal
  []
 
 
-Overfull \hbox (2.79501pt too wide) in paragraph at lines 24--31
+Overfull \hbox (2.79501pt too wide) in paragraph at lines 21--28
 []\OT1/cmr/m/n/10 The use of Laplace so-lu-tion for po-ten-tial guar-
  []
 
 
-Overfull \hbox (0.98944pt too wide) in paragraph at lines 24--31
+Overfull \hbox (0.98944pt too wide) in paragraph at lines 21--28
 \OT1/cmr/m/n/10 anties the unique-ness of min-i-mum in the field.
  []
 
 [2
 
  <./Images/threeway.png (PNG copy)>]
-Overfull \hbox (17.04504pt too wide) in paragraph at lines 31--34
+Overfull \hbox (17.04504pt too wide) in paragraph at lines 28--31
 \OT1/cmr/m/n/10 would be easy to reeval-u-ate the field add/removal
  []
 
 ) (./Text/3-Technical Experimentation.tex
-<Images/simplesource.png, id=79, 433.62pt x 289.08pt>
+<Images/simplesource.png, id=87, 433.62pt x 289.08pt>
 File: Images/simplesource.png Graphic file (type png)
 <use Images/simplesource.png>
 Package pdftex.def Info: Images/simplesource.png  used on input line 5.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-<Images/simplesink01.png, id=81, 433.62pt x 289.08pt>
+<Images/simplesink01.png, id=89, 433.62pt x 289.08pt>
 File: Images/simplesink01.png Graphic file (type png)
 <use Images/simplesink01.png>
 Package pdftex.def Info: Images/simplesink01.png  used on input line 13.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Images/irrotafromshaping.png, id=82, 433.62pt x 289.08pt>
+<Images/irrotafromshaping.png, id=90, 433.62pt x 289.08pt>
 File: Images/irrotafromshaping.png Graphic file (type png)
 <use Images/irrotafromshaping.png>
 Package pdftex.def Info: Images/irrotafromshaping.png  used on input line 21.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
 
+
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Images/irrotashapingwithsink.png, id=83, 433.62pt x 289.08pt>
+[3 <./Images/simplesource.png> <./Images/simplesink01.png>]
+<Images/irrotashapingwithsink.png, id=100, 433.62pt x 289.08pt>
 File: Images/irrotashapingwithsink.png Graphic file (type png)
 <use Images/irrotashapingwithsink.png>
 Package pdftex.def Info: Images/irrotashapingwithsink.png  used on input line 34.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-[3 <./Images/simplesource.png>]
-<Images/rotafromshaping.png, id=93, 433.62pt x 289.08pt>
+<Images/rotafromshaping.png, id=101, 433.62pt x 289.08pt>
 File: Images/rotafromshaping.png Graphic file (type png)
 <use Images/rotafromshaping.png>
 Package pdftex.def Info: Images/rotafromshaping.png  used on input line 44.
+(pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Images/sphericalfield.png, id=102, 433.62pt x 289.08pt>
+File: Images/sphericalfield.png Graphic file (type png)
+<use Images/sphericalfield.png>
+Package pdftex.def Info: Images/sphericalfield.png  used on input line 54.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
 ) (./Text/4-Project Plan.tex
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (./Text/5-References.tex)
 
-LaTeX Warning: Empty bibliography on input line 28.
+Overfull \hbox (4.32169pt too wide) in paragraph at lines 4--5
+[]\OT1/cmr/m/n/10 Implement it on ROS to make it run on gazebo 
+ []
 
-[4 <./Images/simplesink01.png> <./Images/irrotafromshaping.png> <./Images/irrotashapingwithsink.png> <./Images/rotafromshaping.png>] (./main.aux
+) (./Text/5-References.tex) [4 <./Images/irrotafromshaping.png> <./Images/irrotashapingwithsink.png> <./Images/rotafromshaping.png> <./Images/sphericalfield.png>] (./main.aux
 Package cleveref Info: loaded `english' language definitions on input line 21.
 )
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F816FB208AF95DADAEE015BE37DB3606;1659.
+(rerunfilecheck)             Checksum: 456A078951EFB0B95CAA092C9CFC0F80;1762.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58189 strings out of 478300
- 1334549 string characters out of 5849123
- 2343983 words of memory out of 5000000
- 75591 multiletter control sequences out of 15000+600000
+ 58418 strings out of 478300
+ 1339401 string characters out of 5849123
+ 2344231 words of memory out of 5000000
+ 75815 multiletter control sequences out of 15000+600000
  473503 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,13n,109p,1170b,2455s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (4 pages, 411256 bytes).
+ 115i,13n,109p,1170b,3408s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (4 pages, 1409030 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 115 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 PDF objects out of 1000 (max. 8388607)
+ 142 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 120 words of extra memory for PDF output out of 10000 (max. 10000000)
 
