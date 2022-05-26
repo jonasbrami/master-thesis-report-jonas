@@ -1,0 +1,24 @@
+\section{Introduction}
+% Delete the text and write your Introduction here:
+%------------------------------------
+
+
+
+
+The problem we aim to solve during this project is the placement of a sensor on a specific target point on a surface using a fixed manipulator arm mounted on the top of an unmanned quadcopter (helicopter with four rotors). 
+Sensor placement of surfaces using UAVs (Unmanned Aerial Vehicles) is an active field of research and we will propose a solution based on velocity fields.
+A velocity field is a function taking as input 3d coordinates and time and returning a 3d velocity vector. Since our environment is static (obstacle and goal are not moving), we will always use velocity field constant in time.
+Diverse ways of placing sensors sensor using UAVs have been explored in the past, including but not limited to: 
+\begin{itemize}
+    \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the force exerted by the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point
+    \item Sensor Launching: Using the energy stored in a spring, the UAV ejects the sensor at the desired velocity to reach and attach to the target (Unmanned Aerial Sensor Placement for Cluttered Environments). This strategy is very useful when it is not physically possible for a mounted arm to reach the target however it suffers from small payload capacity.
+    \item Drop from flight: We simply drop the sensor above the target point. When target accuracy is not a priority, we are aiming at an non vertical surface and there is no occlusion above the target,  this sensor placement strategy is the most effective. 
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/threeway.png}
+    \caption{Unmanned Aerial Sensor Placement for Cluttered Environments}
+    \label{fig:threeway}
+\end{figure}
+We decided to go throught with the Direct Placement strategy because despite its simplicity, it provides good accuracy and is able to place a large variety of payloads. 
+The solution we will propose can be divided in 3 parts: The first is environment mapping where we perform surface and obstacle recognition using live depth sensor feed. The second part is designing a potential based velocity field to perform path-planning by guiding the UAV from the start point to the target point. The third and last part is designing a velocity field around the target point to apply the desired force amplitude. In this part, we will use the passive velocity field controller (PVFC) to optimize our energy consumption.

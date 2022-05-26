@@ -1,0 +1,54 @@
+\section{Literature Review and Theory}
+% Delete the text and write your Theory/ Background Information here:
+%------------------------------------
+1- PVFC
+2- Potential field
+3- Asl Narikiyo ? no countour so no need?
+\subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles}
+In the paper "Velocity field path-planning for single and multiple unmanned aerial vehicles", the author presents a path-planning technique based on Velocity Fields generated from potentials solution of Laplace's equation.
+Two different type of solution to the Laplace 
+\begin{align} % Use & sign to align, use \nonumber to write a line without number.
+    \laplacian{V} &=0 \nonumber \\
+    \frac{\partial^2 V}{\partial x^2}+\dpd[2]{V}{y} &=0 \label{eq:Laplace} % dpd = display mode partial derivative
+\end{align}
+equation are presented in this paper: Type 1 are irrotational solutions to generate sink and source fields and Type 2 solution are used to build solenoidal fields.
+\begin{align} % Use & sign to align, use \nonumber to write a line without number.
+    {V}_{1} = {Q}_{1} \ln(({x}_{1}-\tilde{{x}_{1}})^2+({x}_{2}-\tilde{{x}_{2}})^2) \\
+    {V}_{2} = {Q}_{2} \arctan(\frac{({x}_{2}-\tilde{{x}_{2}})}{({x}_{1}-\tilde{{x}_{1}})})
+\end{align}
+$({x}_{1},{x}_{2})$ is the position of the UAV\\
+$(\tilde{{x}_{1}}, \tilde{{x}_{2}})$ is the position of the obstacle\\
+${V}_{1}$ and ${V}_{2}$ are respectively type 1 solution (source field) and type 2 solution (vortex field). \\
+The author justifies the use of Laplace solution for building the velocity field for multiple reasons:
+\begin{itemize}
+    \item The use of Laplace solution for potential guaranties the uniqueness of minimum in the field. 
+    Specifically, the use of vortex function built from shaping function to circle around obstacle will.
+    This ensures that only the goal point will be a minimum and that the UAV will not get stuck at some local minimum. 
+    As the author states, we can do an analogy with a famous strategy to find the exit of a maze: 
+    By keeping a hand on a wall of the maze and walking while always touching the wall, we are ensured to find the end of the maze. 
+    This is far from being an optimal solution, however, by using vortex function to circle around obstacle, we can provide the guaranty that the goal will be reached. 
+    As a result, those solenoidal fields based on vortex function also provides active collision avoidance. 
+    \item Scalar shaping functions are at the base of these methodology because by crafting them to match the shape of the obstacles, 
+    we are able to generate corresponding vortex functions for obstacles of any shape. 
+    Since the vortex field is defined for each obstacle, it would be easy to reevaluate the field add/removal of an obstacle.
+    \item Finally, irrotational solutions of the Laplace equation allows us the define an exclusion radius around obstacles (source field) and to direct ourself in direction of the target point (sink field).
+    The exclusion radius is encoded using the amplitude ${Q}_{1}$ of the irrotational field.
+\end{itemize}
+
+We can leverage these both types of potentials to derive a velocity field that will guide the UAV to the contact point without colliding with the surface.
+For example we could define the exclusion radius to be the distance between the centre of mass (CoM) of the quadcopter and its most distant part on the quadcopter. 
+We will still be able to make contact because the distance between the tip of the arm and the CoM will be longer than this exclusion radius. 
+
+
+\subsection{Spherical field to maintain desired force }
+When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
+Since the arm has a fixed size and does not move, this part will describe a partial sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.
+First we need to compute the feasible position of the CoM to apply the desired force. 
+We know that this position is unique because there is only one vertically stable pitch for a given desired force amplitude. We can either compute this position analytically or we can use machine learning techniques such as regression to compute the feasible pitch in function of the desired force. The latter option would require collecting training data from simulations on gazebo. 
+Now we can generate the velocity field on the surface of the sphere to point on the tangent direction of the sphere in the direction of the stable pitch position with an amplitude proportional to the distance from this point. Finally, we use the Passive Velocity Field Control to follow this field
+
+
+\subsection{PVFC}
+
+\subsection{Asl Narikiyo coutour}
+normal + tangeant ? talk about it despite not doing countour
