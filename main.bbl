@@ -68,6 +68,40 @@
       \field{pages}{6623\bibrangedash 6630}
       \range{pages}{8}
     \endentry
+    \entry{li1999passive}{article}{}
+      \name{author}{2}{}{%
+        {{hash=18383f211d4bac66a289325fd81701a8}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Perry\bibnamedelima Y},
+           giveni={P\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=dd1cc88b2c770dba810bc6a8972374fa}{%
+           family={Horowitz},
+           familyi={H\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \strng{fullhash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \strng{bibnamehash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \strng{authorbibnamehash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \strng{authornamehash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \strng{authorfullhash}{6eb2f9e4165d7e55778c3ba46356267a}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on robotics and automation}
+      \field{number}{4}
+      \field{title}{Passive velocity field control of mechanical manipulators}
+      \field{volume}{15}
+      \field{year}{1999}
+      \field{pages}{751\bibrangedash 763}
+      \range{pages}{13}
+    \endentry
     \entry{mcinnes2003velocity}{article}{}
       \name{author}{1}{}{%
         {{hash=71bb883e281d9aa1b7728fb3a49bbec8}{%

@@ -2,10 +2,11 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Literature Review and Theory}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Velocity field path-planning for single and multiple unmanned aerial vehicles \blx@tocontentsinit {0}\cite {mcinnes2003velocity}}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Velocity field path-planning for single and multiple unmanned aerial vehicles \blx@tocontentsinit {0}\cite {li1999passive}}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Spherical field to maintain desired force }{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}PVFC}{3}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Asl Narikiyo coutour}{3}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Technical Experimentation}{3}{section.3}%
-\contentsline {section}{\numberline {4}Project Plan}{4}{section.4}%
-\contentsline {section}{\numberline {5}References}{4}{section.5}%
+\contentsline {subsection}{\numberline {2.3}Passive Velocity Field Control of Mechanical Manipulators}{3}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Velocity fields for planning}{3}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Passive velocity field controller}{4}{subsubsection.2.3.2}%
+\contentsline {section}{\numberline {3}Technical Experimentation}{4}{section.3}%
+\contentsline {section}{\numberline {4}Project Plan}{5}{section.4}%
+\contentsline {section}{\numberline {5}References}{5}{section.5}%
