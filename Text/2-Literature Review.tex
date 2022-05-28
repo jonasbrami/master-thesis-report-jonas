@@ -1,7 +1,13 @@
 \section{Literature Review and Theory}
 % Delete the text and write your Theory/ Background Information here:
 %------------------------------------
-\subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles \cite{li1999passive}}
+\subsection{Current State of the art for UAM}
+There exists 2 main approaches for controls of unmanned aerial manipulators: The first one is the centralized approach where we consider the manipulator and the UAV as a whole whereas the decentralized apporach the manipulator control and UAV control are independant problems.
+In the case of the Sensor placemen with a quadcopter, we use the centralized approach because the arm has no degree of freedom and the force exerted by the tip is coming from the thrust of the UAV.
+The centralized approach is often built on top of a model-based full state control loop optimized with LQR around some desired state. 
+In \cite{ruggiero2018aerial}, the author present the current state of the research for UAMs.
+An UAM can be divided into 4 elements: The UAV floating base (in our case, a quadcopter), the robotic arm, a sensor/gripper attached to the end of the arm (in our case, a sensor will be attached to the end of the arm), diverse sensors on UAV to handle perception (the depth camera )
+\subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles}
 In \cite{farinha2020unmanned}, the author presents a path-planning technique based on velocity fields generated from potentials solution of Laplace's equation.
 Two different types of solution to potential $V$ for the Laplace 
 \begin{align} % Use & sign to align, use \nonumber to write a line without number.
@@ -38,10 +44,14 @@ We will still be able to make contact because the distance between the tip of th
 
 \subsection{Spherical field to maintain desired force }
 When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
-Since the arm has a fixed size and does not move, this part will describe a partial sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.
+Since the arm has a fixed size and does not move, this section will describe a velocity field on the surface of a sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.\\
 First we need to compute the feasible position of the CoM to apply the desired force. 
-We know that this position is unique because there is only one vertically stable pitch for a given desired force amplitude. We can either compute this position analytically or we can use machine learning techniques such as regression to compute the feasible pitch as a function of the desired force. The latter option would require collecting training data from simulations on Gazebo. 
-Now we can generate the velocity field on the surface of the sphere to point on the tangent direction of the sphere in the direction of the stable pitch position with an amplitude proportional to the distance from this point. Finally, we use a Passive Velocity Field Controller \cite{li1999passive} to follow this field to minimize the loss of kinetic energy when interacting with the surface.
+We know that this position is unique because there is only one vertically stable pitch for a given desired force amplitude. The quadcopter needs to pitch to have a forward velocity because the quadcopter is underactuacted.\\
+We can either compute this position analytically or we can use machine learning techniques such as regression to compute the feasible pitch as a function of the desired force. The latter option would require collecting training data from simulations on Gazebo. 
+Now we can generate the velocity field on the surface of the sphere to point on the tangent direction of the sphere in the direction of the stable pitch position. \\
+This field will have an amplitude proportional to the distance from this point.
+The planning strategy we described would also allow us to easily define a desirable range for the yaw angle depending on the type of sensor and on the friction coefficient of the target surface.
+Finally, we use a Passive Velocity Field Controller \cite{li1999passive} to follow this field to minimize the loss of kinetic energy to the environment when interacting with the surface.
 
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 
@@ -66,7 +76,10 @@ The controller presented in this paper allows storing kinetic energy of the mani
 To present this concept, the author first define the notion of a passive dynamic system:\\
 A dynamic system with input $u \in U$ and output $y \in Y$ is passive with respect to the supply rate 
 $s:U \cross Y \rightarrow \mathbb R$, if for any $u: \mathbb R_{\ge 0} \rightarrow U $ and for any $t\geq 0$ the following relation is satisfied:
-$\exists ~ c\in\mathbb R$ such that$ \int_{0}^{t}s(u(\tau),y(\tau))d\tau \geq -c^2$.\\
+\begin{align}
+    \exists ~ c\in\mathbb R  \nonumber\\
+    \int_{0}^{t}s(u(\tau),y(\tau))d\tau \geq -c^2
+\end{align}
 This supply rate can be seen as the total mechanical power input: $s(\tau_{tot}^{T}\dot{q})$. Here the input $\tau_{tot}$ is the total force exerted on the manipulator 
 and $\dot{q}$ is the velocity of the manipulator.
 When considering a feedback system interacting with the environement shown in figure \ref{fig:pvfccontrolloop}, we can decompose $\tau_{tot}=\tau_{e}+\tau$ (where $\tau$ and $\tau_{e}$ are respectively the forces generated by the actuators and the external forces, for example the contact force when touching a surface),
@@ -78,7 +91,14 @@ we can derive the power generated by external forces as $s(\tau_{e}\dot{q})=\tau
     \label{fig:pvfccontrolloop}
 \end{figure} 
 As explained in the paper, a system defined by this supply rate is not passive because obstacles may bring the manipulator to a complete stop for an unbounded amount of time and this loss of kinetic enery cannot be bounded. 
-As a result, the passivity relation $\int_{0}^{t}\tau_{e}^T \dot{q}d\tau \geq -c^2$ is not valid here because the l.h.s represents the total amount of energy lost to the environment and, as stated before, it cannot be bounded. 
+As a result, the passivity relation 
+\begin{equation}
+    \int_{0}^{t}\tau_{e}^T \dot{q}d\tau \geq -c^2 
+\end{equation}
+is not valid here because the l.h.s represents the total amount of energy lost to the environment and, as stated before, it cannot be bounded. 
 This issue motivates the introduction of an augmented system: a fictitious flywheel is added to the system that acts as an energy storage element.
-The dimensionality of the manifold is then increased by one to include the state of the flywheel and this augmented state will be noted as $\bar{q}=[q_1,...,q_n,q_{n+1}]$.
+The dimensionality of the manifold is then increased by one to include the state of the flywheel and this augmented state will be noted as
+\begin{equation} 
+    \bar{q}=[q_1,...,q_n,q_{n+1}]
+\end{equation}
 The paper later presents the dynamics of this augmented state and designs a field for the fictitious flywheel such that "the kinetic energy of the augmented system remains constant"

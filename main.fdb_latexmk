@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main"] 1653683182 "main.bcf" "main.bbl" "main" 1653687977
-  "Bibliography/Sources.bib" 1653601449 922 e77e573215fc6537cf27b69ce95c08f3 ""
-  "main.bcf" 1653687976 108393 5feba323d690144035595d716713028d "pdflatex"
+["biber main"] 1653759988 "main.bcf" "main.bbl" "main" 1653762295
+  "Bibliography/Sources.bib" 1653749261 1211 558ea5edd8b6ed1dce93c9a231b957d3 ""
+  "main.bcf" 1653762294 108458 fc27562cbc9cd696da909fe3ca74b264 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1653687973 "c:/Users/jonas/Desktop/report/main.tex" "main.pdf" "main" 1653687977
+["pdflatex"] 1653762291 "c:/Users/jonas/Desktop/report/main.tex" "main.pdf" "main" 1653762295
   "Code/NTNU-lab.sty" 1653581900 21348 187801fd0d9f2ec32e15e0bf3df0ae04 ""
   "Code/preamble.tex" 1653582935 1009 e7b94cf405501c458a478b23cee45a47 ""
   "Images/irrotafromshaping.png" 1653592245 45498 baaca2af80d8090d55cd6b0dc90d8cc6 ""
@@ -18,12 +18,12 @@
   "Images/sphericalfield.png" 1653592247 1319040 c5ac4da3688b5867adee551e67655bf3 ""
   "Images/threeway.png" 1653589293 57150 a432b58bbd046851c1d65199395f7cda ""
   "Text/0-frontmatter.tex" 1653591599 1124 fd1388c05aca555ececb34a1b894fb4f ""
-  "Text/1-Introduction.tex" 1653684841 2767 0f2faa7d59a2b02cc44a4e2a4e600d4f ""
-  "Text/2-Literature Review.tex" 1653686963 9445 c685db253a78eae99350d558ac6d3085 ""
-  "Text/3-Technical Experimentation.tex" 1653687971 3003 e68ea70da5afb93ab433857c64c6129f ""
-  "Text/4-Project Plan.tex" 1653602050 479 b2e21c1827681b895a99ffcbae0cbf74 ""
+  "Text/1-Introduction.tex" 1653760510 3573 03a4a275b876fc7095872fe4f332b2a3 ""
+  "Text/2-Literature Review.tex" 1653762289 10923 833bfbfa5fbc47c284f54c63a2732127 ""
+  "Text/3-Technical Experimentation.tex" 1653761851 3244 616837ff7b31849e2724feb5ea92ac29 ""
+  "Text/4-Project Plan.tex" 1653750785 1023 0f20a2be517bf8b1020502e4f0f5836c ""
   "Text/5-References.tex" 1653591621 21 09476f7e142f6d3668839c3416fc5928 ""
-  "c:/Users/jonas/Desktop/report/main.tex" 1653601726 3284 63f3012beaaa20453f8be65febd61260 ""
+  "c:/Users/jonas/Desktop/report/main.tex" 1653761497 3293 7b06af963f7f607d3121adcbeae9bdd2 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1653576391 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1653576979 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1653576733 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -303,13 +303,13 @@
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1653579392 4628057 1230c9ff463314e58cdc6fb8d990e1df ""
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1653579517 2828208 82cc76ed23eda3036f341985b0cfbf92 ""
   "c:/texlive/2022/texmf.cnf" 1653579368 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1653687976 6619 850ba2adc5ea67dcc422f5c351180cc4 "pdflatex"
-  "main.bbl" 1653683184 5154 5571ae89347a63a921db32ebd4e6871b "biber main"
-  "main.out" 1653687976 2310 00268fb87544dccffa06cb104fb386fe "pdflatex"
-  "main.run.xml" 1653687976 2500 1448f43018b15748914c78575adeac2e "pdflatex"
+  "main.aux" 1653762294 6778 1aa734dbe61c4c08f99b256ebf3b3835 "pdflatex"
+  "main.bbl" 1653759990 6687 0399768256ddfc1bb3b1d83197898b1f "biber main"
+  "main.out" 1653762294 2473 d6d0622e96f2ff16fcbb4dd9ad5c54c1 "pdflatex"
+  "main.run.xml" 1653762294 2500 1448f43018b15748914c78575adeac2e "pdflatex"
   "main.spl" 0 -1 0 "pdflatex"
-  "main.tex" 1653601726 3284 63f3012beaaa20453f8be65febd61260 ""
-  "main.toc" 1653687976 1059 7da3c88a4ef056dfb20c362db24afcc9 "pdflatex"
+  "main.tex" 1653761497 3293 7b06af963f7f607d3121adcbeae9bdd2 ""
+  "main.toc" 1653762294 1112 905d3e3e01057b2365f16c8a4ee418f4 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

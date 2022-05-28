@@ -131,6 +131,45 @@
       \field{pages}{419\bibrangedash 426}
       \range{pages}{8}
     \endentry
+    \entry{ruggiero2018aerial}{article}{}
+      \name{author}{3}{}{%
+        {{hash=3e38694ed4fd8193b8eb883c855825cf}{%
+           family={Ruggiero},
+           familyi={R\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=e15cd618b6c63388a1615b1d5de28005}{%
+           family={Lippiello},
+           familyi={L\bibinitperiod},
+           given={Vincenzo},
+           giveni={V\bibinitperiod}}}%
+        {{hash=b5324e4f75530911e657e3275142212f}{%
+           family={Ollero},
+           familyi={O\bibinitperiod},
+           given={Anibal},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{c9efcc43aebe7a85c2ec95688e27c954}
+      \strng{fullhash}{4c34f729ee5da7bd029b66a5092107fb}
+      \strng{bibnamehash}{4c34f729ee5da7bd029b66a5092107fb}
+      \strng{authorbibnamehash}{4c34f729ee5da7bd029b66a5092107fb}
+      \strng{authornamehash}{c9efcc43aebe7a85c2ec95688e27c954}
+      \strng{authorfullhash}{4c34f729ee5da7bd029b66a5092107fb}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Robotics and Automation Letters}
+      \field{number}{3}
+      \field{title}{Aerial manipulation: A literature review}
+      \field{volume}{3}
+      \field{year}{2018}
+      \field{pages}{1957\bibrangedash 1964}
+      \range{pages}{8}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

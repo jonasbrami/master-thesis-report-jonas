@@ -5,9 +5,15 @@
 
 
 
-The problem we aim to solve during this project is the placement of a sensor on a specific target point on a surface using a fixed manipulator arm mounted on the top of an unmanned quadcopter (helicopter with four rotors). 
-Sensor placement on surfaces using UAVs (Unmanned Aerial Vehicles) is an active field of research and we will propose a solution based on velocity fields.
-A velocity field is a function taking as input  a four dimensional vector $(x,y,z,t)$ and returning a 3 dimensional velocity vector $(u,v,w)$. Since our environment is static (obstacle and goal are not moving), we will always use a time invariant velocity field.
+The problem we aim to solve during this project is the placement of a sensor on a specific target point on a surface using a fixed manipulator arm mounted on the top of an unmanned quadcopter.
+A quacopter is an underactuacted helicopter with four rotors. This UAV (Unmanned Aerial Vehicles) is underactuated because arbitrary configurations and trajectory cannot be realized.\\
+In the last ten years, research about UAV controls accelerated drastically with many applications in the civilian industry in a variety of areas.\\
+Monitoring and sensing tasks are traditionally operated by human but they be complicated, expensive and dangerous for the human operator when the point of interest is hard to reach. For example, big structures like bridges need to undergo regular inspections to ensure there are no cracks or other signs of structural fatigue.\\
+Using UAVs for such tasks would not only reduce cost of maintance of those structures, but also increase the security of both the human manipulator and the civilians using it. \\
+Sensor placement on surfaces using UAVs  is an active field of research and we will propose a solution based on velocity fields.\\
+
+A velocity field is a function taking as input  a four dimensional vector $(x,y,z,t)$ and returning a 3 dimensional velocity vector $(u,v,w)$.\\
+Since our environment is static, meaning that the obstacles and goal are not moving, we will always use a time invariant velocity field.
 Diverse ways of placing sensors using UAVs have been explored in the past, including but not limited to: 
 \begin{itemize}
     \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the force exerted by the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point.
