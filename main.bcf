@@ -2364,10 +2364,12 @@
     <bcf:citekey order="10">li1999passive</bcf:citekey>
     <bcf:citekey order="11">li1999passive</bcf:citekey>
     <bcf:citekey order="12">mcinnes2003velocity</bcf:citekey>
-    <bcf:citekey order="13">farinha2020unmanned</bcf:citekey>
-    <bcf:citekey order="14">ruggiero2018aerial</bcf:citekey>
-    <bcf:citekey order="15">li1999passive</bcf:citekey>
-    <bcf:citekey order="16">mcinnes2003velocity</bcf:citekey>
+    <bcf:citekey order="13">rusu20113d</bcf:citekey>
+    <bcf:citekey order="14">farinha2020unmanned</bcf:citekey>
+    <bcf:citekey order="15">ruggiero2018aerial</bcf:citekey>
+    <bcf:citekey order="16">li1999passive</bcf:citekey>
+    <bcf:citekey order="17">mcinnes2003velocity</bcf:citekey>
+    <bcf:citekey order="18">rusu20113d</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

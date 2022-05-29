@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  28 MAY 2022 19:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  29 MAY 2022 15:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1129,6 +1129,28 @@ Package tocbasic Info: setting babel extension for `nls' on input line 188.
 \openout6 = `main.nlo'.
 
 Package nomencl Info: Writing nomenclature file main.nlo on input line 8.
+ (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count522
+\lst@gtempboxa=\box93
+\lst@token=\toks50
+\lst@length=\count523
+\lst@currlwidth=\dimen346
+\lst@column=\count524
+\lst@pos=\count525
+\lst@lostspace=\dimen347
+\lst@width=\dimen348
+\lst@newlines=\count526
+\lst@lineno=\count527
+\lst@maxwidth=\dimen349
+ (c:/texlive/2022/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count528
+\lst@skipnumbers=\count529
+\lst@framebox=\box94
+) (c:/texlive/2022/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1157,17 +1179,17 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
  (c:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count522
-\scratchdimen=\dimen346
-\scratchbox=\box93
-\nofMPsegments=\count523
-\nofMParguments=\count524
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count525
-\MPscratchDim=\dimen347
-\MPnumerator=\count526
-\makeMPintoPDFobject=\count527
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count530
+\scratchdimen=\dimen350
+\scratchbox=\box95
+\nofMPsegments=\count531
+\nofMParguments=\count532
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count533
+\MPscratchDim=\dimen351
+\MPnumerator=\count534
+\makeMPintoPDFobject=\count535
+\everyMPtoPDFconversion=\toks52
 ) (c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1230,6 +1252,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: Trying to load language 'nynorsk'...
@@ -1279,6 +1302,7 @@ Package hyperref Info: Link coloring ON on input line 11.
 \@outlinefile=\write7
 \openout7 = `main.out'.
 
+\c@lstlisting=\count536
 Package cleveref Info: loaded `english' language definitions on input line 12.
  (./Text/0-frontmatter.tex (./main.toc
 Package cleveref Info: loaded `english' language definitions on input line 2.
@@ -1305,7 +1329,7 @@ Overfull \hbox (2.60056pt too wide) in paragraph at lines 20--21
 []\OT1/cmr/m/n/10 Sensor Launch-ing [[][]1[][]]: Us-ing the en-ergy stored
  []
 
-<Images/threeway.png, id=74, 251.43938pt x 268.50313pt>
+<Images/threeway.png, id=69, 251.43938pt x 268.50313pt>
 File: Images/threeway.png Graphic file (type png)
 <use Images/threeway.png>
 Package pdftex.def Info: Images/threeway.png  used on input line 25.
@@ -1328,99 +1352,114 @@ Overfull \hbox (2.79501pt too wide) in paragraph at lines 26--33
  []
 
 [3]
-<Images/radialreduction.png, id=104, 196.23312pt x 77.28876pt>
+Overfull \hbox (5.62825pt too wide) in paragraph at lines 90--91
+\OT1/cmr/m/n/10 sphere. For each point $\OML/cmm/m/it/10 =vec\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^^; ^^R\OT1/cmr/m/n/10 )$ on the sphere
+ []
+
+<Images/radialreduction.png, id=100, 196.23312pt x 77.28876pt>
 File: Images/radialreduction.png Graphic file (type png)
 <use Images/radialreduction.png>
-Package pdftex.def Info: Images/radialreduction.png  used on input line 67.
+Package pdftex.def Info: Images/radialreduction.png  used on input line 105.
 (pdftex.def)             Requested size: 218.51521pt x 86.06984pt.
-<Images/pvfccontrolloop.png, id=108, 250.43562pt x 120.45pt>
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.117 \begin{align}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.117 \begin{align}
+                    <./Images/radialreduction.png (PNG copy)>]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.120 \end{align}
+                 
+<Images/pvfccontrolloop.png, id=119, 250.43562pt x 120.45pt>
 File: Images/pvfccontrolloop.png Graphic file (type png)
 <use Images/pvfccontrolloop.png>
-Package pdftex.def Info: Images/pvfccontrolloop.png  used on input line 89.
+Package pdftex.def Info: Images/pvfccontrolloop.png  used on input line 127.
 (pdftex.def)             Requested size: 218.51521pt x 105.10124pt.
-) (./Text/3-Technical Experimentation.tex [4 <./Images/radialreduction.png (PNG copy)> <./Images/pvfccontrolloop.png (PNG copy)>]
-<Images/simplesource.png, id=124, 433.62pt x 289.08pt>
+) (./Text/3-Technical Experimentation.tex
+<Images/simplesource.png, id=122, 433.62pt x 289.08pt>
 File: Images/simplesource.png Graphic file (type png)
 <use Images/simplesource.png>
 Package pdftex.def Info: Images/simplesource.png  used on input line 5.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-<Images/simplesink01.png, id=127, 433.62pt x 289.08pt>
+<Images/simplesink01.png, id=125, 433.62pt x 289.08pt>
 File: Images/simplesink01.png Graphic file (type png)
 <use Images/simplesink01.png>
 Package pdftex.def Info: Images/simplesink01.png  used on input line 13.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-<Images/irrotafromshaping.png, id=130, 433.62pt x 289.08pt>
+<Images/irrotafromshaping.png, id=128, 433.62pt x 289.08pt>
 File: Images/irrotafromshaping.png Graphic file (type png)
 <use Images/irrotafromshaping.png>
 Package pdftex.def Info: Images/irrotafromshaping.png  used on input line 21.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Images/irrotashapingwithsink.png, id=136, 433.62pt x 289.08pt>
+ [5 <./Images/pvfccontrolloop.png (PNG copy)> <./Images/simplesource.png> <./Images/simplesink01.png> <./Images/irrotafromshaping.png>]
+<Images/irrotashapingwithsink.png, id=148, 433.62pt x 289.08pt>
 File: Images/irrotashapingwithsink.png Graphic file (type png)
 <use Images/irrotashapingwithsink.png>
 Package pdftex.def Info: Images/irrotashapingwithsink.png  used on input line 37.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
-<Images/rotafromshaping.png, id=138, 433.62pt x 289.08pt>
+<Images/rotafromshaping.png, id=150, 433.62pt x 289.08pt>
 File: Images/rotafromshaping.png Graphic file (type png)
 <use Images/rotafromshaping.png>
-Package pdftex.def Info: Images/rotafromshaping.png  used on input line 49.
+Package pdftex.def Info: Images/rotafromshaping.png  used on input line 50.
 (pdftex.def)             Requested size: 218.51521pt x 145.67767pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Images/sphericalfield.png, id=140, 433.62pt x 289.08pt>
+<Images/sphericalfield.png, id=152, 433.62pt x 289.08pt>
 File: Images/sphericalfield.png Graphic file (type png)
 <use Images/sphericalfield.png>
-Package pdftex.def Info: Images/sphericalfield.png  used on input line 60.
+Package pdftex.def Info: Images/sphericalfield.png  used on input line 61.
 (pdftex.def)             Requested size: 563.70595pt x 375.80394pt.
 
-Overfull \hbox (108.46185pt too wide) in paragraph at lines 60--61
+Overfull \hbox (108.46185pt too wide) in paragraph at lines 61--62
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (./Text/4-Project Plan.tex [5 <./Images/simplesource.png> <./Images/simplesink01.png> <./Images/irrotafromshaping.png> <./Images/irrotashapingwithsink.png>]
-Overfull \hbox (4.32169pt too wide) in paragraph at lines 4--5
-[]\OT1/cmr/m/n/10 Implement it on ROS to make it run on gazebo 
- []
-
-) (./Text/5-References.tex)
-Overfull \hbox (2.45123pt too wide) in paragraph at lines 30--30
+) (./Text/4-Project Plan.tex) [6 <./Images/irrotashapingwithsink.png> <./Images/rotafromshaping.png>]
+Overfull \hbox (2.45123pt too wide) in paragraph at lines 29--29
 \OT1/cmr/m/n/10 con-trol of me-chan-i-cal ma-nip-u-la-tors[], IEEE Trans-
  []
 
 
-Overfull \hbox (3.09569pt too wide) in paragraph at lines 30--30
+Overfull \hbox (3.09569pt too wide) in paragraph at lines 29--29
 \OT1/cmr/m/n/10 ma-nip-u-la-tion: a lit-er-a-ture re-view[], IEEE Robotics
  []
 
-[6 <./Images/rotafromshaping.png>] [7 <./Images/sphericalfield.png>] (./main.aux
+[7
+
+ <./Images/sphericalfield.png>] (./main.aux
 Package cleveref Info: loaded `english' language definitions on input line 21.
 )
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D6D0622E96F2FF16FCBB4DD9AD5C54C1;2473.
+(rerunfilecheck)             Checksum: 6C1FBB54B6408AD643C94233A09D6581;2379.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 58480 strings out of 478300
- 1340670 string characters out of 5849123
- 2347513 words of memory out of 5000000
- 75852 multiletter control sequences out of 15000+600000
+ 59837 strings out of 478300
+ 1360336 string characters out of 5849123
+ 2370830 words of memory out of 5000000
+ 77195 multiletter control sequences out of 15000+600000
  475952 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,13n,109p,1170b,2455s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 115i,16n,109p,1170b,2455s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 1489359 bytes).
+Output written on main.pdf (7 pages, 1498369 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
- 43 named destinations out of 1000 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 138 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,11 +1,11 @@
 \section{Project Plan}
 \begin{itemize}
-    \item Implement the planning and spherical velocity field in a simple simulation with the quadcopter dynamics
-    \item Implement it on ROS to make it run on gazebo
-    \item Use the depth sensor camera to generate the field with the live sensor data using the PCL library
-    \item Make a ML model to compute the optimal pitch vector taking as input the profile of the quadcopter, surface normal and desired applied force
+    \item Implement the potential based planning and spherical velocity field in a simple simulation with the quadcopter dynamics (Expected to be done by Jun 2nd)
+    \item Implement and integrate these velocity fields into the ROS (Robot Operating System) passive velocity field controller written by Brett Stephens. ROS is a set of open source programs which main functionnality is to provide a subscription base communication system between ROS Nodes and many useful abstractions for robotics. (Expected to be done by end of June)
+    \item Use the Depth Camera D435i to generate the field with the live sensor data using the Point Cloud Library \cite{rusu20113d} (PCL). PCL is a software providing large scale point cloud processing capabilities. (Expected to be done before mid July)
+    \item Train a machine learning model to compute the optimal pitch vector taking as input the profile of the quadcopter (moments of inertia, mass...), surface normal at the point of interet,  and the desired applied force on the target point. (Expected to be done by end of July)
 
-A measure of success would be to succesfully implement the whole pipepile from perception to velocity fields together with PVFC and making it work with a real quadcopter in the lab. A first success would be to have it working without obtacles and with a simple vertical target surface. 
+A measure of success for this project could be to succesfully implement the whole pipepile from perception to velocity fields together with PVFC and making it work with a real quadcopter in the lab. A first success would be to have it working without obtacles and with a simple vertical target surface. 
 When we have this working, a full success would be to have it working for diverse kind of obstacles and non trivial target surfaces.
 A total success would be to be able to maintain contact with the target when applying external forces/torques on the UAV. 
 \end{itemize}

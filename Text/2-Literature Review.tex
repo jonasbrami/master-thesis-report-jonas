@@ -3,8 +3,8 @@
 %------------------------------------
 \subsection{Current State of the art for UAM}
 There exists 2 main approaches for controls of unmanned aerial manipulators: The first one is the centralized approach where we consider the manipulator and the UAV as a whole whereas the decentralized apporach the manipulator control and UAV control are independant problems.
-In the case of the Sensor placemen with a quadcopter, we use the centralized approach because the arm has no degree of freedom and the force exerted by the tip is coming from the thrust of the UAV.
-The centralized approach is often built on top of a model-based full state control loop optimized with LQR around some desired state. 
+In the case of the Sensor placement with a quadcopter, we use the centralized approach because the arm has no degree of freedom and the force exerted by the tip is coming from the thrust of the UAV.
+The centralized approach is often built on top of a model-based full state control loop optimized with LQR (Linear–quadratic regulator) around some desired state. 
 In \cite{ruggiero2018aerial}, the author present the current state of the research for UAMs.
 An UAM can be divided into 4 elements: The UAV floating base (in our case, a quadcopter), the robotic arm, a sensor/gripper attached to the end of the arm (in our case, a sensor will be attached to the end of the arm), diverse sensors on UAV to handle perception (the depth camera )
 \subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles}
@@ -45,6 +45,7 @@ We will still be able to make contact because the distance between the tip of th
 \subsection{Spherical field to maintain desired force }
 When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
 Since the arm has a fixed size and does not move, this section will describe a velocity field on the surface of a sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.\\
+Computing the field on the surface of a sphere is very computationally efficient because we do not have to sample field vectors in the whole 3d space around the point of interest.
 First we need to compute the feasible position of the CoM to apply the desired force. 
 We know that this position is unique because there is only one vertically stable pitch for a given desired force amplitude. The quadcopter needs to pitch to have a forward velocity because the quadcopter is underactuacted.\\
 We can either compute this position analytically or we can use machine learning techniques such as regression to compute the feasible pitch as a function of the desired force. The latter option would require collecting training data from simulations on Gazebo. 
@@ -52,6 +53,43 @@ Now we can generate the velocity field on the surface of the sphere to point on 
 This field will have an amplitude proportional to the distance from this point.
 The planning strategy we described would also allow us to easily define a desirable range for the yaw angle depending on the type of sensor and on the friction coefficient of the target surface.
 Finally, we use a Passive Velocity Field Controller \cite{li1999passive} to follow this field to minimize the loss of kinetic energy to the environment when interacting with the surface.
+Now we are going to describe how the spherical field is computed. 
+Let us recall that the cartesian to spherical change of variable is defined as
+\begin{equation} 
+    r = \sqrt(x^2+y^2+z^2)\\ \nonumber 
+\end{equation}
+\begin{equation}
+    \theta = \arccos(\frac{z}{r})\\\nonumber 
+\end{equation}
+\begin{equation}
+    \label{transformation}
+    \phi =
+    \begin{cases}
+        \arctan(\frac{y}{x}), & \text{if $x>0$},\\
+        \arctan(\frac{y}{x}) + \pi, & \text{if $x<0$ and $y\geq 0$},\\
+        \arctan(\frac{y}{x}) - \pi, & \text{if $x<0$ and $y<0$},\\
+        \pi/2, & \text{if $x=0$ and $y>0$},\\
+        -\pi/2, & \text{if $x=0$ and $y<0$},\\
+        not defined , & \text{if $x=0$ and $y=0$}
+    \end{cases}       
+\end{equation}  
+The jacobian defining the curvature of the sphere for at each point for this transformation is 
+\begin{align}
+    J = \frac{\partial{(x,y,z)}}{\partial{(r,\phi,\theta)}} \nonumber\\
+    J = \begin{bmatrix}
+        \sin(\theta)\cos(\phi) & \cos(\theta)\cos(\phi) & -\sin(\phi)\\
+        \sin(\theta)\sin(\phi) & \cos(\theta)\sin(\phi) & \cos(\phi)\\
+        \cos(\theta) & -\sin(\theta) & 0\\
+        \end{bmatrix}
+        \label{jacobian}
+\end{align}
+We can now derive this velocity field in 3 steps:
+\begin{enumerate}
+    \item Sample a list of point on the surface of the sphere in cartesian coordiate. In Python or Matlab, a meshgrid can be used where we the field will be non zero with \begin{equation} x^2+y^2+z^2-R_{sphere}\leq\epsilon\nonumber \end{equation} 
+    \item For each point in the list, we compute its spherical coordinate according to \ref{transformation} and we compute the jacobian at the point
+    \item Let $(\phi_{opt}, \theta_{opt})$ be the desired position on the sphere. For each point $/vec(\phi, \theta)$ on the sphere , we compute the tangeant vector in the the field that will point toward the goal as \\$J(r, \phi, \theta).(\epsilon, \phi_{opt}-\phi, \theta_{opt}-\theta)^T$ using the jacobian defined in \ref{jacobian} 
+
+\end{enumerate}
 
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 

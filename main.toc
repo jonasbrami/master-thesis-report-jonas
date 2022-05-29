@@ -10,4 +10,3 @@
 \contentsline {subsubsection}{\numberline {2.4.2}Passive velocity field controller}{4}{subsubsection.2.4.2}%
 \contentsline {section}{\numberline {3}Technical Experimentation}{5}{section.3}%
 \contentsline {section}{\numberline {4}Project Plan}{6}{section.4}%
-\contentsline {section}{\numberline {5}References}{6}{section.5}%

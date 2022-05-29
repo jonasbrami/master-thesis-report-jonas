@@ -170,6 +170,38 @@
       \field{pages}{1957\bibrangedash 1964}
       \range{pages}{8}
     \endentry
+    \entry{rusu20113d}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=efa72a89c39f88310fbf5072cdca42e3}{%
+           family={Rusu},
+           familyi={R\bibinitperiod},
+           given={Radu\bibnamedelima Bogdan},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=6e48c0bbf1da12af63cf1231c2d2ba32}{%
+           family={Cousins},
+           familyi={C\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \strng{fullhash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \strng{bibnamehash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \strng{authorbibnamehash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \strng{authornamehash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \strng{authorfullhash}{5678ccc2a6fe34d7c20fb50e90607b59}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2011 IEEE international conference on robotics and automation}
+      \field{title}{3d is here: Point cloud library (pcl)}
+      \field{year}{2011}
+      \field{pages}{1\bibrangedash 4}
+      \range{pages}{4}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
