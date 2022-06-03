@@ -12,8 +12,7 @@ Monitoring and sensing tasks are traditionally operated by human but can be comp
 Using UAVs for such tasks would not only reduce cost of maintance of those structures, but also increase the security of both the human manipulator and the civilians using it. \\
 Sensor placement on surfaces using UAVs  is an active field of research and we will propose a solution based on velocity fields.\\
 
-A velocity field is a function taking as input  a \Brett {state, $q$} \Brett{In our case, the velocity field is a path (a function of position, not a function of time) as opposed to a trajectory (function of position AND time).} and returns a 3 dimensional \Brett{desired} velocity vector $(u,v,w)$.\\
-Since our environment is static, meaning that the obstacles and goal are not moving, we will always use a time invariant velocity field.
+A velocity field is a function taking as input a state, $q$ and returns a 3 dimensional desired velocity vector $(u,v,w)$.\\ It describes a path (a function of position) as opposed to a trajectory (function of position and time).
 Diverse ways of placing sensors using UAVs have been explored in the past, including but not limited to: 
 \begin{itemize}
     \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the force exerted by the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point.
