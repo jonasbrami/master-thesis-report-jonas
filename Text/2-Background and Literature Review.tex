@@ -1,0 +1,44 @@
+\section{Background and Literature Review}
+% Delete the text and write your Theory/ Background Information here:
+%------------------------------------
+\subsection{Current State of the art for UAM}
+There exists 2 main approaches for controls of unmanned aerial manipulators: The first one is the centralized approach where we consider the manipulator and the UAV as a whole whereas the decentralized apporach the manipulator control and UAV control are independant problems.
+In the case of the Sensor placement with a quadcopter, we use the centralized approach because the arm has no degree of freedom and the force exerted by the tip is coming from the thrust of the UAV.
+The centralized approach is often built on top of a model-based full state control loop optimized with LQR (Linear–quadratic regulator) around some desired state. 
+In \cite{ruggiero2018aerial}, the author present the current state of the research for UAMs.
+An UAM can be divided into 4 elements: The UAV floating base (in our case, a quadcopter), the robotic arm, a sensor/gripper attached to the end of the arm (in our case, a sensor will be attached to the end of the arm), diverse sensors on UAV to handle perception (the depth camera )
+\subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles}
+In \cite{farinha2020unmanned}, the author presents a path-planning technique based on velocity fields generated from potentials solution of Laplace's equation.
+Two different types of solution to potential $V$ for the Laplace 
+\begin{align} % Use & sign to align, use \nonumber to write a line without number.
+    \laplacian{V} &=0 \nonumber \\
+    \frac{\partial^2 V}{\partial x^2}+\dpd[2]{V}{y} &=0 \label{eq:Laplace} % dpd = display mode partial derivative
+\end{align}
+equation are presented in this paper: Type 1 are irrotational solutions to generate sink and source fields and Type 2 solutions are used to build solenoidal fields.
+\begin{align} % Use & sign to align, use \nonumber to write a line without number.
+    {V}_{1} = {Q}_{1} \ln(({x}_{1}-\tilde{{x}_{1}})^2+({x}_{2}-\tilde{{x}_{2}})^2) \\
+    {V}_{2} = {Q}_{2} \arctan(\frac{({x}_{2}-\tilde{{x}_{2}})}{({x}_{1}-\tilde{{x}_{1}})})
+\end{align}
+where $({x}_{1},{x}_{2})$ is the position of the UAV, $(\tilde{{x}_{1}}, \tilde{{x}_{2}})$ is the position of the obstacle;
+${V}_{1}$ and ${V}_{2}$ are respectively type 1 solution (source field) and type 2 solution (vortex field). \\
+The author justifies the use of Laplace solution for building the velocity field for multiple reasons:
+\begin{itemize}
+    \item The use of Laplace solution for potential guarantees the uniqueness of the minimum in the field. 
+    Specifically, the use of vortex function built from shaping function to circle around obstacle will
+    ensure that only the goal point will be a minimum of the field and that the UAV will not get stuck at some local minimum. 
+    As the author states, we can do an analogy with a famous strategy to find the exit of a maze: 
+    by keeping a hand on a wall of the maze and walking while always touching the wall, we are ensured to find the end of the maze. 
+    This is far from being an optimal solution, however, it can guarantee that the goal will be reached. 
+    As a result, those solenoidal fields based on vortex function also provide active collision avoidance. 
+    \item Scalar shaping functions are at the base of these methodology because by crafting them to match the shape of the obstacles, 
+    we are able to generate corresponding vortex functions for obstacles of any shape. 
+    Since the vortex field is defined for each obstacle, it would be easy to reevaluate the field after addition or removal of an obstacle.
+    \item Finally, irrotational solutions of the Laplace equation allow us to enforce an exclusion radius around obstacles (source field) and to direct the UAV in direction of the target point (sink field).
+    The exclusion radius is encoded using the amplitude ${Q}_{1}$ of the irrotational field.
+\end{itemize}
+
+We can leverage these both types of potentials to derive a velocity field that will guide the UAV to the contact point without colliding with the surface.
+For example, we could define the exclusion radius to be the distance between the centre of mass (CoM) of the quadcopter and its most distant part on the quadcopter. 
+We will still be able to make contact because the distance between the tip of the arm and the CoM will be longer than this exclusion radius. 
+
+

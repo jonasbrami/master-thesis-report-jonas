@@ -1,0 +1,35 @@
+\section{Implementation}
+\label{Implementation section}
+As was stated in the introduction, we have two main implementations: 
+\subsection*{Simplistic Python implementation}
+The Python implementation uses simplistic quadcopter dynamics only defined by:
+\begin{itemize}
+    \item Quad mass: $m_b$
+    \item Moments of inertia: $I_{xx}$, $I_{yy}$, $I_{zz}$
+    \item drag coefficient: $A_{x}$, $A_{y}$, $A_{z}$
+    \item pd attitude gains: $K_{\phi_{p}}$, $K_{\phi_{d}}$, $K_{\psi_{p}}$, $K_{\psi_{d}}$, $K_{\theta_{p}}$, $K_{\theta_{d}}$
+\end{itemize}
+
+We use ODEint to evolve the state of the system by doing to following on each iteration: 
+\begin{itemize}
+    \item First we compute the current Mass Matrix $M$, Coriolis Matrix $C$, Control Matrix $B$, gravity Matrix $G$
+    \item Then we pass to the PVFC controller those dynamics together with the desired velocity field and compute a desired thurst vector according to (cite pvfc equations)
+    \item For a given desired thrust vector, The quad uses a simple attitude PD control law to compute the state derivates of the quad
+\end{itemize}
+
+
+The desired velocity fields are computed using Sympy (A Python library for symbolic ) for easy field and field gradient computation. Since most fields we used are derived from potential functions, we can easily obtain the field and field jacobian required by PVFC by symbolically differentiating their potentials or shaping functions.
+
+\subsection*{Full Sensor Placement pipeline in ROS/Gazebo/PX4}
+In this implementation, we are using a real world quadrotor called IRIS quad provided in the PX4 SITL package. 
+The dynamics are evolved and computed by Gazebo. 
+The implementation is divided in 4 ROS Nodes, 1 ROS-PCL Node, 1 Gazebo-ROS plugin, and 1 PX4/MAVROS node:
+
+
+\begin{itemize}
+    \item Implement the potential based planning and spherical velocity field in a simple simulation with the quadcopter dynamics (Expected to be done by Jun 2nd)
+    \item Implement and integrate these velocity fields into the ROS (Robot Operating System) passive velocity field controller written by Brett Stephens. ROS is a set of open source programs which main functionnality is to provide a subscription base communication system between ROS Nodes and many useful abstractions for robotics. (Expected to be done by end of June)
+    \item Use the Depth Camera D435i to generate the field with the live sensor data using the Point Cloud Library \cite{rusu20113d} (PCL). PCL is a software providing large scale point cloud processing capabilities. (Expected to be done before mid July)
+    \item Train a machine learning model to compute the optimal pitch vector taking as input the profile of the quadcopter (moments of inertia, mass...), surface normal at the point of interet,  and the desired applied force on the target point. (Expected to be done by end of July)
+ 
+\end{itemize}
