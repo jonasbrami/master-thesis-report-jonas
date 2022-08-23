@@ -146,7 +146,7 @@ The Coriolis Matrix of the augmented system is defined such that:
     0 & 0 
 \end{bmatrix}
 \end{align}
-$C$ is built using the Levi–Civita connection describe in pvfc part1
+$C$ is built using the Levi–Civita connection describe in \cite{li2001passive}
 \subsubsection{Augmented velocity field}
 Now let us define the augmented field for the flywheel. The motivation for introducing an augmented system is
 to allow energy transfer between the quadcopter actuators and the flywheel such that the total kinetic energy in the system remains constant.
@@ -188,6 +188,6 @@ The antisymetric structure of the matrices multiplying $\dot{\bar{q}}$ are key t
 \begin{equation}
     \frac{d}{dt}k(\bar{q}, \dot{\bar{q}}) = \tau_e^T(t)\dot{q}(t) \label{kineticdt}
 \end{equation}
-This is done by introducing the concepts of compatibility between a metric defining an inner product and an affine connection. It is shown in pvfc part1 that the compatibility between the Levi-Civita connection with the metric defined my $M$ has a direct link between antisymetricity of the matrices in the control coupling law, passivity and energy conservation.
+This is done by introducing the concepts of compatibility between a metric defining an inner product and an affine connection. It is shown in \cite{li2001passive} that the compatibility between the Levi-Civita connection with the metric defined my $M$ has a direct link between antisymetricity of the matrices in the control coupling law, passivity and energy conservation.
 
 From equations \ref{kineticdt} and \ref{passivityCondition}, the passivity of the system with regard to external forces is straightforward.
