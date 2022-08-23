@@ -43,13 +43,16 @@ The jacobian defining the curvature of the sphere for at each point for this tra
         \end{bmatrix}
         \label{jacobian}
 \end{align}
-We can now derive this velocity field in 3 steps:
-\begin{enumerate}
-    \item Sample a list of point on the surface of the sphere in cartesian coordiate. In Python or Matlab, a meshgrid can be used where we the field will be non zero with \begin{equation} | \sqrt{x^2+y^2+z^2}-R_{sphere}|\leq\epsilon\nonumber \end{equation} where $R_{sphere}$ is the radius of the mounted arm.
-    \item For each point in the list, we compute its spherical coordinate according to \ref{transformation} and we compute the jacobian at the point
-    \item Let $(\phi_{opt}, \theta_{opt})$ be the desired position on the sphere. For each point $(\phi, \theta)$ on the sphere , we compute the tangeant vector in the the field that will point toward the goal as \\$J(r, \phi, \theta).(\epsilon, \phi_{opt}-\phi, \theta_{opt}-\theta)^T$ using the jacobian defined in \ref{jacobian} 
 
-\end{enumerate}
+Figure \ref{fig:spherical} represents an example of such a field where the red point is the optimal position to apply the pressure, the blue arrows are the velocity field vectors and the center of the sphere is the point where the force is applied
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Images/sphericalfield.png}
+    \caption{Spherical contact field}
+    \label{fig:spherical}
+\end{figure*}
+
 
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 
@@ -57,9 +60,11 @@ He later presents the passive velocity field controller whose objective is to "m
 its physical environment, while causing the manipulator to perform the desired task." 
 We will explain each one of those arguments and relate them to our sensor placement task.
 \subsubsection{Velocity fields for planning}
-The classical approach to do planning is to encode the task into a timed trajectory $Q:\mathbb R_{\ge 0} \rightarrow G$ where G is the n-dimensional configuration manifold for the manipulator.
+The classical approach to do planning is to encode the task into a timed trajectory $Q:\mathbb R_{\ge 0} \rightarrow G$ where G is the n-dimensional configuration manifold for the manipulator and use a controller to minimize the state trajectory error.
 Using this strategy, the objective of the controller is to minimize the deviation between $q(t)$ and $Q(t)$ where $q:\mathbb R_{\ge 0} \rightarrow G$ is the actual coordinate representation of the manipulator.
-This strategy could be fine if the manipulator was able to never deviate from the timed trajectory defined by Q. However, this is rarely the case and when a deviation occurs, a side effect of this minimization strategy called radial reduction can occur.
+This strategy could be fine if the manipulator was able to never deviate from the timed trajectory defined by Q. However, if deviation occurs for example, when external forces are appllied to the
+robot, a side effect of this minimization strategy called radial reduction can occur.
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{Images/radialreduction.png}
@@ -68,7 +73,15 @@ This strategy could be fine if the manipulator was able to never deviate from th
 \end{figure} 
 The author argues that if following the path of the desired trajectory is more important than the timing in which the manipulator follows this trajectory, a strategy based on velocity field is more appropriate because the velocity of the manipulator will only depend on its current position and will be time invariant.  
 For the sensor placement task, using a timed trajectory strategy with deviation minimization to reach the contact point may lead the UAV to collide with an obstacle. With our strategy based on potential velocity field, the UAV will not try to shortcut the desired path in case of deviation.
-
+The author defines an $\alpha$ error such that:
+\begin{equation}
+    e_{\alpha} = \dot{q} - \alpha V
+\end{equation}
+One of the most important priorities of PVFC is that when no external forces are applied on the robot, there is a positive $\alpha$ such that 
+\begin{equation}
+    \lim_{t\to\infty}e_{\alpha} = 0
+\end{equation}
+In other words, PVFC does not seek to exactly match the desired velocity field magnitude but just an $alpha$ scaled version of it. The $\alpha$ we are going to converge to is a function of the energy in the augmented system and the energy in the desired velocity field.
 \subsubsection{Passive velocity field controller}
 The controller presented in this paper allows storing kinetic energy of the manipulator's actuators in a spring or a flywheel and releasing it when needed so that we can interact with surfaces while minimizing energy loss. This is useful because the UAV has a limited amount of energy stored in its battery and this is one of the main limiting factors for most tasks (including Sensor Placement). \\
 To present this concept, the author first define the notion of a passive dynamic system:\\
@@ -76,7 +89,7 @@ A dynamic system with input $u \in U$ and output $y \in Y$ is passive with respe
 $s:U \cross Y \rightarrow \mathbb R$, if for any $u: \mathbb R_{\ge 0} \rightarrow U $ and for any $t\geq 0$ the following relation is satisfied:
 \begin{align}
     \exists ~ c\in\mathbb R  \nonumber\\
-    \int_{0}^{t}s(u(\tau),y(\tau))d\tau \geq -c^2
+    \int_{0}^{t}s(u(\tau),y(\tau))d\tau \geq -c^2 \label{passivityCondition}
 \end{align}
 
 Let us remember that the work $W$ and power $P$ of a force $F$ on a point mass object with velocity $v$ are defined as
@@ -104,87 +117,77 @@ As a result, the passivity relation
 is not valid here because the l.h.s represents the total amount of energy lost to the environment and, as stated before, it cannot be bounded. 
 This issue motivates the introduction of an augmented system: a fictitious flywheel is added to the system that acts as an energy storage element.
 The dimensionality of the manifold is then increased by one to include the state of the flywheel and this augmented state will be noted as
-\begin{equation} 
+\begin{align} 
     \bar{q}=[q_1,...,q_n,q_{n+1}]
-\end{equation}
-The paper later presents the dynamics of this augmented state and designs a field for the fictitious flywheel such that "the kinetic energy of the augmented system remains constant"
-
-Diverse ways of placing sensors using UAVs have been explored in the past, including but not limited to: 
-\begin{itemize}
-    \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the force exerted by the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point.
-    \item Sensor Launching \cite{farinha2020unmanned}: Using the energy stored in a spring, the UAV ejects the sensor at the desired velocity to reach and attach to the target (Unmanned Aerial Sensor Placement for Cluttered Environments). This strategy is very useful when it is not physically possible for a mounted arm to reach the target however it suffers from small payload capacity.
-    \item Drop from flight: We simply drop the sensor above the target point. When target accuracy is not a priority and we are aiming at a non-vertical surface and there is no occlusion above the target,  this sensor placement strategy is the most effective. 
-\end{itemize}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/threeway.png}
-    \caption{Different types of sensor placement from \cite{farinha2020unmanned}}
-    \label{fig:threeway}
-\end{figure}
-
-The characteristics of each one of mentioned methods are shown in \ref{fig:threeway}.
-We decided to go through with the Direct Placement strategy because despite its simplicity, it provides good accuracy and is able to place a large variety of payloads.\\
-
-In this section, we will present the field we previously described with illustrations. 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/simplesource.png}
-    \caption{Simple Type 1 irrotational source}
-    \label{fig:simplesource}
-\end{figure}
-The field in figure \ref{fig:simplesource} was drawn by computing the gradient of $V_1$ with $(\tilde{{x}_{1}}, \tilde{{x}_{2}}) = (0,0)$.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/simplesink01.png}
-    \caption{Simple Type 1 irrotational sink}
-    \label{fig:simplesink}
-\end{figure}
-The field in figure \ref{fig:simplesink} is a sink field at $(0,1)$, it is similar to the source field in figure \ref{fig:simplesource} but with opposite sign.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/irrotafromshaping.png}
-    \caption{irrotational field from shaping}
-    \label{fig:irrotafromshaping}
-\end{figure}
-The field in figure \ref{fig:irrotafromshaping} has been generated by computing the gradient of the shaping function of a superquadratic: 
-\begin{align}
-    H=(x_1-\tilde{{x}_{1}})^n+(x_2-\tilde{{x}_{2}})^n \\
-    F=\frac{1}{1+(\frac{1}{L}H^{\frac{1}{n}})^m}
+    \bar{V} = [V, V_fly]
 \end{align}
-As stated in \cite{mcinnes2003velocity}, when $m\gg1$, the edge of the shaping function gets thinner. Higher values of $n$ result in more rectangular shapes whereas $n=2$ describes the shaping function of a sphere.
 
-Both these fields are type 1 irrotational solutions of the Laplace equation.
-
-By adding the irrotational sink from figure \ref{fig:simplesink} and the irrotational field from shaping function in figure \ref{fig:irrotafromshaping} we obtain a good representation in figure \ref{fig:irrotafromshapingwithsink} of what the velocity field will look like when close to the target point. 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/irrotashapingwithsink.png}
-    \caption{irrotational field from shaping with sink}
-    \label{fig:irrotafromshapingwithsink}
-\end{figure}
-
-The shaping function is mainly used to generate a vortex field around an obstacle, as explained in the paper. It is given by: 
-\begin{equation}
-    v_2=-\frac{\partial{F}}{\partial{x_2}}e_1 + \frac{\partial{F}}{\partial{x_1}}e_2
+\subsubsection{Augmented dynamics}
+Let us now describe the dynamics of the augmented system
+\begin{equation} 
+    \bar{M}(\bar{q})\ddot{\bar{q}} + \bar{C}(\bar{q}, \dot{\bar{q}})\dot{\bar{q}} = \bar{\tau} + \bar{\tau_{e}}
 \end{equation}
-Here, $e_1$ and $e_2$ are an orthonormal basis. \\ 
-We can see in figure \ref{fig:rotafromshaping} an example of vortex field around a super quadriatic.
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.48\textwidth]{Images/rotafromshaping.png}
-    \caption{Solenoidale field from shaping function}
-    \label{fig:rotafromshaping}
-\end{figure}
+The mass matrix of the augmented system is defined such that:
+\begin{align}
+\bar{M}(q) = \begin{bmatrix} 
+   M(q) & 0 \\
+    0 & m_f
+\end{bmatrix}\\
+M(q) =  \begin{bmatrix} 
+    m_b & 0 & 0 \\
+    0 & m_b & 0 \\
+    0 & 0 & m_b \\
+ \end{bmatrix}
+\end{align}
+The Coriolis Matrix of the augmented system is defined such that: 
+\begin{align}
+\bar{C}(\bar{q}, \dot{\bar{q}}) = \begin{bmatrix} 
+    C(q, \dot(q)) & 0 \\
+    0 & 0 
+\end{bmatrix}
+\end{align}
+$C$ is built using the Levi–Civita connection describe in pvfc part1
+\subsubsection{Augmented velocity field}
+Now let us define the augmented field for the flywheel. The motivation for introducing an augmented system is
+to allow energy transfer between the quadcopter actuators and the flywheel such that the total kinetic energy in the system remains constant.
+This property is enforced in the definition of the desired velocity field. \\
+First let us define $\bar{E}$ to be the total energy of the augmented system following the desired velocity field.
+$\bar{E}$ can be written as a sum of the flywheel desired kinetic energy $K_{fly_{d}}$ and the quad desired kinetic energy $K_{quad_{d}}$: 
+\begin{equation}
+    \bar{E} = K_{fly_{d}} + K_{quad_{d}}
+\end{equation}
+Given a desired velocity field $V$ we have: 
+\begin{equation}
+    K_{quad_{d}}(q) = V(q)^T\frac{1}{2}M(q)V(q)
+\end{equation}
+Since 
+\begin{equation}
+    K_{fly_{d}} = \frac{1}{2} m_f V_fly
+\end{equation}
+We can derive $V_fly$ in function of  $K_{quad_{d}}(q)$ and $E_bar$:
+\begin{equation}
+    V_{fly}(q) = \sqrt(\frac{2}{m_f}(\bar{E}- K_{quad_{d}}(q)))
+\end{equation}
+\subsubsection{PVFC Control law}
+To define the PVFC control law, the author defines the following quantities
+\begin{align}
+    \bar{p}(\bar{q}, \dot{\bar{q}}) = \bar{M(\bar{q})}\dot{\bar{q}} \label{actualaugmomentum}\\
+    \bar{P}(\bar{q}) = \bar{M(\bar{q})}\bar{V}(\bar{q}) \label{desiredaugmomentum}\\
+    \bar{w(\bar{q}, \dot{\bar{q}})} = \bar{M(\bar{q})}\dot{\bar{V}} + \bar{C}(\bar{q}, \dot{\bar{q}}) \label{desiredDynamics}
+\end{align}
+The equation \ref{actualaugmomentum} can be seen as the actual momentum of the augmented system, the equation \ref{desiredaugmomentum} can be seen 
+as the desired momentum of the augmented system and \ref{desiredDynamics} is the desired dynamics (desired force applied on) of the augmented system.
 
-As explained in section 2, after we made contact, we stop using the potential based field and we use the spherical field to maintain 
-contact with the desired force.
-Figure \ref{fig:spherical} represents an example of such a field where the red point is the optimal position to apply the pressure, the blue arrows are the velocity field vectors and the center of the sphere is the point where the pressure is applied
 
-\begin{figure*}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{Images/sphericalfield.png}
-    \caption{Spherical contact field}
-    \label{fig:spherical}
-\end{figure*}
+From there the author derived the two terms of the coupling control law: 
+\begin{align}
+    \bar{\tau_c} = \frac{1}{2\bar{E}}(\bar{w}\bar{P}^T - \bar{P}\bar{w}^T ) \dot{\bar{q}} \label{tauc}\\
+    \bar{\tau_f} = \gamma(\bar{P}\bar{p}^T - \bar{p}\bar{P}^T ) \dot{\bar{q}} \label{tauf}\\
+\end{align}
+The antisymetric structure of the matrices multiplying $\dot{\bar{q}}$ are key to proving that the derivate of the kinetic energy in the augmented system is 
+\begin{equation}
+    \frac{d}{dt}k(\bar{q}, \dot{\bar{q}}) = \tau_e^T(t)\dot{q}(t) \label{kineticdt}
+\end{equation}
+This is done by introducing the concepts of compatibility between a metric defining an inner product and an affine connection. It is shown in pvfc part1 that the compatibility between the Levi-Civita connection with the metric defined my $M$ has a direct link between antisymetricity of the matrices in the control coupling law, passivity and energy conservation.
+
+From equations \ref{kineticdt} and \ref{passivityCondition}, the passivity of the system with regard to external forces is straightforward.
