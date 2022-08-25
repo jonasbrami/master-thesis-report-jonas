@@ -53,6 +53,17 @@ Figure \ref{fig:spherical} represents an example of such a field where the red p
     \label{fig:spherical}
 \end{figure*}
 
+\subsection{Quadcopter modeling}
+\subsubsection{Platform}
+Similarly to the platform used in "An Aerial Parallel Manipulator with Shared Compliance", our system is composed of two subsytems: The underactuated quadrotor base (for which we have software in the loop integration given by PX4) and the fixed manipulator arm above the center of mass of the quad.
+This system is underactued because in the base frame of this quad, the only thrust direction for the quadcopter is in the $z$ axis in the frame of the base of the quad, the rotors cannot move relative to the base of the quad. Therefore, the IRIS model control inputs is a quarternion vector and a thrust amplitude. However, the output of the passive controler for the non-augmented translational domain is a thrust vector $\Lambda \in\mathbb R_3 $, therefore we will need to convert this desired thrust to the desired format.
+In addition to the fixed manipulator arm, a depth camera is mounted on the quad base. We use the depth camera model provided by in Pixhawk 4 with IRIS that acts like an intel realsense r200. We use the transform provided in the PX4 obstacle avoidance package to transform generated the point cloud from the frame of the camera to the frame of the quadcopter base, and we use the PX4 odometry information to transform the point cloud from the base to the ground gazebo frame.
+
+\subsubsection{Translational dynamics}
+
+The dynamics that we take into account in our passive control strategy are only in the translational domain. The passive velocity field controler output is a thurst vector and PX4 translate this desired thurst into actual angular velocities for each one of the rotors 
+$\Omega = (\bar{\omega_1}, \bar{\omega_2}, \bar{\omega_3}, \bar{\omega_4})$. Therefore PVFC only acts on the translational level and not at the rotational level, PVFC has no knowledge or control about the speed of thoses rotors and therefore the passivity of this controler is only at the translational level. 
+This was done for simplicity because writting PVFC for both rotational and translational would require rewritting the low level attitude Pixhawk 4 control for the IRIS model. 
 
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 
