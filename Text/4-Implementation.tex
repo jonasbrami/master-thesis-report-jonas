@@ -39,7 +39,16 @@ We can then convert this pose to quaternion and publish it to the attitude topic
 It should be noted that the thrust amplitude expected by the IRIS attitude control is not in Newtons but is a scalar between 0 and 1. As a result, we had to experimentaly map a thrust slope and thrust intercept to map the desired PVFC thurst amplitude to a scalled thurst amplitude. 
 
 \subsubsection{PCL Object Segmentation Node}
-This node reuses the code of a PCL tutorial performing cylinder segmentation on point cloud data(cite). We added a ROS integration to to the velocity field topic the position of the detected object and also we implemented the transforms from camera point of view to FCU (Flying control unit) frame, and from FCU frame to world frame. 
+This node reuses the code of a PCL tutorial performing cylinder segmentation on point cloud data(cite). 
+We added a ROS integration to to the velocity field topic the position of the detected object and also we implemented the transforms from camera point of view to FCU (Flying control unit) frame, and from FCU frame to world frame. 
+It works in the following way:
+\begin{itemize}
+    \item Use a PCL passthrough filter to remove Nan datapoints and the scene background
+    \item Use the PCL NormalEstimation class to estimate the normals of the cleaned pointcloud scene. This is done using KdTree based methods for increased robustness against noise in the measurements. KdTree are data structures used in Computer Science that are very efficient for Nearest neighbour search.
+    \item Perform plane model segmentation on the extracted normals using RANSAC and filter out the planar inliers
+    \item After the last step, we should have a clean normals containing only cylinders normals, we can now use the SACSegmentationFromNormals class of PCL to extract the coefficient of the cylinder and its position in the frame of the camera
+    \item If a cylinder was detected, we transform the position of the cylinder from the depth camera frame to the gazebo world frame and we publish it to the cylinder topic for the velocity field node to read. 
+\end{itemize}
 \subsubsection{Grasping arm Gazebo-ROS plugin}    
 This node reuses the code of the vaccuum arm of Gazebo, but it was modified so that could be "attached" to the moving IRIS model and attach to a wall in Gazebo. 
 
