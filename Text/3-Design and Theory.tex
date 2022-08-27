@@ -123,9 +123,10 @@ One of the most important priorities of PVFC is that when no external forces are
 \begin{equation}
     \lim_{t\to\infty}e_{\alpha} = 0
 \end{equation}
-In other words, PVFC does not seek to exactly match the desired velocity field magnitude but just an $alpha$ scaled version of it. The $\alpha$ we are going to converge to is a function of the energy in the augmented system and the energy in the desired velocity field.
-\subsubsection{Passive velocity field controller}
-The controller presented in this paper allows storing kinetic energy of the manipulator's actuators in a spring or a flywheel and releasing it when needed so that we can interact with surfaces while minimizing energy loss. This is useful because the UAV has a limited amount of energy stored in its battery and this is one of the main limiting factors for most tasks (including Sensor Placement). \\
+In other words, PVFC does not seek to exactly match the desired velocity field but just an $alpha$ scaled version of it. The $\alpha$ we are going to converge to is a function of the energy in the augmented system and the energy in the desired velocity field.
+\subsubsection{Passivity}
+The controller presented in this paper is based on energy control theory and allows energy transfer between the environement and the augmented system.
+Passivity allows to dissipate the energy input to the system into the augtented system. \\
 To present this concept, the author first define the notion of a passive dynamic system:\\
 A dynamic system with input $u \in U$ and output $y \in Y$ is passive with respect to the supply rate 
 $s:U \cross Y \rightarrow \mathbb R$, if for any $u: \mathbb R_{\ge 0} \rightarrow U $ and for any $t\geq 0$ the following relation is satisfied:
@@ -164,6 +165,8 @@ The dimensionality of the manifold is then increased by one to include the state
     \bar{V} = [V, V_{fly}]
 \end{align}
 
+Using such passitive and dissipative systems enables safe interaction between the robot and its environement since the total kinetical energy of the system is bounded by the system initial kinetic energy and energy input from the environement.
+
 \subsubsection{Augmented dynamics}
 Let us now describe the dynamics of the augmented system
 \begin{equation} 
@@ -188,7 +191,7 @@ The Coriolis Matrix of the augmented system is defined such that:
     0 & 0 
 \end{bmatrix}
 \end{align}
-$C$ is built using the Levi–Civita connection describe in \cite{li2001passive}
+$C$ is built using the Levi–Civita connection described in \cite{li2001passive}
 \subsubsection{Augmented velocity field}
 Now let us define the augmented field for the flywheel. The motivation for introducing an augmented system is
 to allow energy transfer between the quadcopter actuators and the flywheel such that the total kinetic energy in the system remains constant.
