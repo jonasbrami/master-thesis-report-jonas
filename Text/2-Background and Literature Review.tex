@@ -4,8 +4,8 @@
 \subsection{Placing sensors using UAVs}
 Diverse ways of placing sensors using UAVs have been explored in the past, including but not limited to: 
 \begin{itemize}
-    \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the force exerted by the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point.
-    \item Sensor Launching \cite{farinha2020unmanned}: Using the energy stored in a spring, the UAV ejects the sensor at the desired velocity to reach and attach to the target (Unmanned Aerial Sensor Placement for Cluttered Environments). This strategy is very useful when it is not physically possible for a mounted arm to reach the target however it suffers from small payload capacity.
+    \item Direct Placement: Using a fixed arm manipulator on an UAV, we use the thrust of the UAV to provide enough pressure on the tip of the arm to place the sensor on the target point.
+    \item Sensor Launching \cite{farinha2020unmanned}: Using the energy stored in a spring, the UAV ejects the sensor at the desired velocity to reach and attach to the target (Unmanned Aerial Sensor Placement for Cluttered Environments). This strategy is very useful when it is not physically possible for a mounted arm to reach the target, however, it suffers from small payload capacity.
     \item Drop from flight: We simply drop the sensor above the target point. When target accuracy is not a priority and we are aiming at a non-vertical surface and there is no occlusion above the target,  this sensor placement strategy is the most effective. 
 \end{itemize}
 \begin{figure}[h!]
@@ -15,16 +15,16 @@ Diverse ways of placing sensors using UAVs have been explored in the past, inclu
     \label{fig:threeway}
 \end{figure}
 
-The characteristics of each one of mentioned methods are shown in \ref{fig:threeway}.
+The characteristics of each one of mentioned methods are shown in figure \ref{fig:threeway}.
 We decided to go through with the Direct Placement strategy because despite its simplicity, it provides good accuracy and is able to place a large variety of payloads.\\
 
 \subsection{Current State of the art for UAM}
-There exists 2 main approaches for controls of unmanned aerial manipulators: The first one is the centralized approach where we consider the manipulator and the UAV as a whole whereas the decentralized apporach the manipulator control and UAV control are independant problems.
+There exists 2 main approaches for controls of unmanned aerial manipulators: The first one is the centralized approach where we consider the manipulator and the UAV as a whole; whereas in the decentralized approach, the manipulator controls and UAV control are independant problems.
 In the case of the Sensor placement with a quadcopter, we use the centralized approach because the arm has no degree of freedom and the force exerted by the tip is coming from the thrust of the UAV.
 The centralized approach is often built on top of a model-based full state control loop optimized with LQR (Linear–quadratic regulator) around some desired state. 
 In \cite{ruggiero2018aerial}, the author present the current state of the research for UAMs.
-An UAM can be divided into 4 elements: The UAV floating base (in our case, a quadcopter), the robotic arm, a sensor/gripper attached to the end of the arm (in our case, a sensor will be attached to the end of the arm), diverse sensors on UAV to handle perception (the depth camera )
-While the state of the art approaches for UAV controlers are based on minimizing a trajectory error.
+An UAM can be divided into 4 elements: the UAV floating base (in our case, a quadcopter), the robotic arm, a sensor/gripper attached to the end of the arm (in our case, a sensor will be attached to the end of the arm), diverse sensors on UAV to handle perception (the depth camera).
+While the state of the art approaches for UAV controllers are based on minimizing a state trajectory error, the planning strategy we will study next is based on velocity fields.
 \subsection{Velocity field path-planning for single and multiple unmanned aerial vehicles}
 In \cite{farinha2020unmanned}, the author presents a path-planning technique based on velocity fields generated from potentials solution of Laplace's equation.
 Two different types of solution to potential $V$ for the Laplace 
@@ -44,20 +44,19 @@ The author justifies the use of Laplace solution for building the velocity field
     \item The use of Laplace solution for potential guarantees the uniqueness of the minimum in the field. 
     Specifically, the use of vortex function built from shaping function to circle around obstacle will
     ensure that only the goal point will be a minimum of the field and that the UAV will not get stuck at some local minimum. 
-    As the author states, we can do an analogy with a famous strategy to find the exit of a maze: 
+    As the author states, we can do an analogy to a famous strategy to find the exit of a maze: 
     by keeping a hand on a wall of the maze and walking while always touching the wall, we are ensured to find the end of the maze. 
     This is far from being an optimal solution, however, it can guarantee that the goal will be reached. 
     As a result, those solenoidal fields based on vortex function also provide active collision avoidance. 
     \item Scalar shaping functions are at the base of these methodology because by crafting them to match the shape of the obstacles, 
-    we are able to generate corresponding vortex functions for obstacles of any shape. 
-    Since the vortex field is defined for each obstacle, it would be easy to reevaluate the field after addition or removal of an obstacle.
+    we are able to generate corresponding vortex or repulsive functions for obstacles of any shape. 
+    Since those functions are defined for each obstacle, it would be easy to reevaluate the field after addition or removal of an obstacle.
     \item Finally, irrotational solutions of the Laplace equation allow us to enforce an exclusion radius around obstacles (source field) and to direct the UAV in direction of the target point (sink field).
     The exclusion radius is encoded using the amplitude ${Q}_{1}$ of the irrotational field.
 \end{itemize}
 
 We can leverage these both types of potentials to derive a velocity field that will guide the UAV to the contact point without colliding with the surface.
 For example, we could define the exclusion radius to be the distance between the centre of mass (CoM) of the quadcopter and its most distant part on the quadcopter. 
-We will still be able to make contact because the distance between the tip of the arm and the CoM will be longer than this exclusion radius. 
 
 We will present the field we previously described with illustrations. 
 \begin{figure}[h!]
@@ -79,7 +78,7 @@ The field in figure \ref{fig:simplesink} is a sink field at $(0,1)$, it is simil
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{Images/irrotafromshaping.png}
-    \caption{irrotational field from shaping}
+    \caption{irrotational field from shaping function}
     \label{fig:irrotafromshaping}
 \end{figure}
 The field in figure \ref{fig:irrotafromshaping} has been generated by computing the gradient of the shaping function of a superquadratic: 
@@ -87,7 +86,7 @@ The field in figure \ref{fig:irrotafromshaping} has been generated by computing 
     H=(x_1-\tilde{{x}_{1}})^n+(x_2-\tilde{{x}_{2}})^n \\
     F=\frac{1}{1+(\frac{1}{L}H^{\frac{1}{n}})^m}
 \end{align}
-As stated in \cite{mcinnes2003velocity}, when $m\gg1$, the edge of the shaping function gets thinner. Higher values of $n$ result in more rectangular shapes whereas $n=2$ describes the shaping function of a sphere.
+As stated in \cite{mcinnes2003velocity}, when $m\gg1$, the edge of the shaping function gets thinner. Higher values of $n$ result in more rectangular shapes whereas $n=2$ describes the shaping function of an infinite cylinder.
 
 Both these fields are type 1 irrotational solutions of the Laplace equation.
 
@@ -95,7 +94,7 @@ By adding the irrotational sink from figure \ref{fig:simplesink} and the irrotat
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{Images/irrotashapingwithsink.png}
-    \caption{irrotational field from shaping with sink}
+    \caption{irrotational field from shaping function with sink}
     \label{fig:irrotafromshapingwithsink}
 \end{figure}
 
@@ -112,4 +111,5 @@ We can see in figure \ref{fig:rotafromshaping} an example of vortex field around
     \label{fig:rotafromshaping}
 \end{figure}
 
+\subsection{QUAD PD CONTROL example}
 
