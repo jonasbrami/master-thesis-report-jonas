@@ -60,7 +60,7 @@ This field is based on the methodology explained in \cite{asl2019assistive}. We 
 The author explains how to encode a countour $\mathcal{C}$ into a desired velocity field $v_d$.
 The field is given by: 
 \begin{equation}
-    v_d(p) = l(\alpha \hat{t} + \lVert Q-p \rVert \hat{n}) 
+    v_d(p) = l(\alpha \hat{t} + \lVert Q-p \rVert \hat{n}) \label{eqn:circularfieldcons}
 \end{equation}
 \begin{itemize}
     \item $p\in \mathbb{R}_3$ is the current position
@@ -117,7 +117,7 @@ The author argues that if following the path of the desired trajectory is more i
 For the sensor placement task, using a timed trajectory strategy with deviation minimization to reach the contact point may lead the UAV to collide with an obstacle. With our strategy based on potential velocity field, the UAV will not try to shortcut the desired path in case of deviation.
 The author defines an $\alpha$ error such that:
 \begin{equation}
-    e_{\alpha} = \dot{q} - \alpha V
+    e_{\alpha} = \dot{q} - \alpha V \label{alphaerror}
 \end{equation}
 One of the most important priorities of PVFC is that when no external forces are applied on the robot, there is a positive $\alpha$ such that 
 \begin{equation}
@@ -211,7 +211,7 @@ Since
 \end{equation}
 We can derive $V_{\text{fly}}$ in function of  $K_{quad_{d}}(q)$ and $\bar{E}$:
 \begin{equation}
-    V_{\text{fly}}(q) = \sqrt{\frac{2}{m_{\text{fly}}}(\bar{E}- K_{quad_{d}}(q))}
+    V_{\text{fly}}(q) = \sqrt{\frac{2}{m_{\text{fly}}}(\bar{E}- K_{quad_{d}}(q))} \label{eqn:vfly}
 \end{equation}
 \subsubsection{PVFC Control law}
 To define the PVFC control law, the author defines the following quantities

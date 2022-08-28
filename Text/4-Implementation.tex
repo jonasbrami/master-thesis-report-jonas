@@ -13,6 +13,10 @@ The Python implementation uses simplistic quadcopter dynamics only defined by:
 In this subsection, we will consider $q\in\mathbb{R}_6$ to be the rotational and translational states: $q(t) = (x(t), y(t), z(t), \phi(t), \theta(t), \psi(t))$
 and $\dot{q}(t) = \frac{dq}{dt} = (\dot{x}(t), \dot{y}(t), \dot{z}(t), \dot{\phi}(t), \dot{\theta}(t), \dot{\psi}(t))$
 
+It should be noted that the drag coefficients here are used both by the PVFC controller and the dynamics of our system. 
+In opposition to the Gazebo implementation, the drag experienced by the quad in the python implementation is also defined by those drag coefficients.
+When running in Gazebo, the IRIS model has a real world drag that we do not control.
+
 We use ODEint to evolve the state $(q,\dot{q}, \ddot{q})$ of the system by doing to following on each time step: 
 \begin{itemize}
     \item First we compute the current Mass Matrix $M$, Coriolis Matrix $C$, Control Matrix $B$, gravity Matrix $G$. Since the mass of the system is constant, the translational parts of $M$ and $G$ are constants.
@@ -70,4 +74,4 @@ This node reuses the code of the vaccuum arm of Gazebo, but it was modified so t
     \caption{implementation diagram}
     \label{fig:implementationdiagram}
 \end{figure*}
-
+\newpage
