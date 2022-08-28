@@ -111,24 +111,70 @@ then during the second phase, we can see a spike for both $\beta$ and $\beta$ er
 We can see how PVFC dissipates the external force and makes the $\beta$ error converge to 0 when no external force is applied in the last phase.
 
 Now we are going to show experiments done on the Gazebo simulation
-\subsection{Gusty world}
+\subsection{Circular Field}
+\subsubsection{Ebar study}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_trajectory_ebar_circular.png}
+   \caption{circular field trajectory Gazebo}
+   \label{fig:trajgazebocircularebar}
+\end{figure*}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_circular_ebar_V.png}
+   \caption{circular field velocity comparison Gazebo}
+   \label{fig:velgazebocircularebar}
+\end{figure*}
+\subsubsection{Gamma study}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_trajectory_gamma_circular.png}
+   \caption{circular field trajectory Gazebo}
+   \label{fig:trajgazebocirculargamma}
+\end{figure*}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_circular_gamma_V.png}
+   \caption{circular field velocity comparison Gazebo}
+   \label{fig:velgazebocirculargamma}
+\end{figure*}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_betaerror_gamma_circular.png}
+   \caption{circular field $\beta$ error Gazebo}
+   \label{fig:betaerrorgazebocirculargamma}
+\end{figure*}
+\subsubsection{force compensation study}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_trajectory_fcomp_circular.png}
+   \caption{circular field trajectory Gazebo}
+   \label{fig:trajgazebocircularfcomp}
+\end{figure*}
+\begin{figure*}[h!]
+   \centering
+   \includegraphics[width=\linewidth]{Images/gazebo_circular_fcomp_V.png}
+   \caption{circular field velocity comparison Gazebo}
+   \label{fig:velgazebocircularfcomp}
+\end{figure*}
+\subsection{Potential sink Field}
+\subsubsection{Ebar study}
+\subsubsection{Gamma study}
+\subsubsection{force compensation study}
 
-\subsection{Windy world}
-
-\subsection{gamma analysis}
-
-\subsection{Ebar analysis}
+\subsection{Sensor placement experiment}
+\subsubsection{}
 
 
 
- \begin{itemize}
-    \item Calibrate thrust
-    \item  introduction of compensation terms for friction
-    \item finetuning (Ax Ay Az). too high cause speed to diverge, too low the quad lose all its energy and stop. 
-    \item beta error
-    \item presents experiences in different worlds
-    \item using wind world helped lead the way to understand the need for compensation
-    \item Analyze Ebar, Gamma
- \end{itemize}
- \newpage
+%  \begin{itemize}
+%     \item Calibrate thrust
+%     \item  introduction of compensation terms for friction
+%     \item finetuning (Ax Ay Az). too high cause speed to diverge, too low the quad lose all its energy and stop. 
+%     \item beta error
+%     \item presents experiences in different worlds
+%     \item using wind world helped lead the way to understand the need for compensation
+%     \item Analyze Ebar, Gamma
+%  \end{itemize}
+%  \newpage
  
