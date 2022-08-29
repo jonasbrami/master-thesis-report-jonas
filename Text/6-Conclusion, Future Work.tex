@@ -1,9 +1,16 @@
 \section{Conclusion, Future Work}
-\begin{itemize}
-    \item Evolutionary algorithm to select the optimal gains and Ebar
-    \item Estimate the friction coefficient
-    \item Smart sampling the field to find the best Ebar
-    \item More obstacle types
-    \item desired yaw velocity field 
-    \item switch to circular field when stuck
-\end{itemize}
+In this project, we presented an application of a passive velocity field controller to the sensor placement task with a grasping arm mounted on a quadcopter integrated with a depth camera for active obstacle avoidance. 
+We first implemented a simple passive velocity controller with simple dynamics on Python using Sympy to symbolically derive and evaluate the dynamics and velocity fields. 
+This implementation allowed us to reproduce results from the PVFC paper \cite{li1999passive}.
+Then we implemented the full pipeline of sensor placement using ROS, PX4, Gazebo and PCL and explained the different field\\
+
+Because of lack of time, we did not have time to improve the implementation but many steps could have been done to make it more robust.
+First, the linear approximation for the drag coefficient we used seems to be task specific and may need to be updated during flight. Therefore, another controller could be used to tune the linear drag coefficient 
+according to the total mechanical energy in the augmented system.\\
+In addition, we often struggled to choose a value for the gains parameter of PVFC $\bar{E}$ and $\gamma$. Multiple strategies could be used to solve this problem such as sampling the velocity field to know the minimum $\bar{E}$ required 
+such that the flywheel velocity never becomes an imaginary number. \\
+It would be also possible to think about an evolutionary algorithm based solution for finding the best gains for the task. For example, in the case of a countour following task, a fitness function could be defined as a function of the path tracking accuracy.
+Another improvement could be to generalize the superquadratic detection spectrum to be able to detect any kind of superquadratic.\\
+It would also be possible to switch to a seleinoidale field in case the quad is stuck at the local minimum in the velocity field.\\
+Finally, we hardcoded the yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
+

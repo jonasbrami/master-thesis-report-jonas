@@ -229,6 +229,7 @@ From there the author derived the two terms of the coupling control law:
     \bar{\tau_c} = \frac{1}{2\bar{E}}(\bar{w}\bar{P}^T - \bar{P}\bar{w}^T ) \dot{\bar{q}} \label{tauc}\\
     \bar{\tau_f} = \gamma(\bar{P}\bar{p}^T - \bar{p}\bar{P}^T ) \dot{\bar{q}} \label{tauf}\\
 \end{align}
+the $\tau_f$ term is the feedback term, while $\tau_c$ is the term enforcing passivity and allowing to dissipate external forces work into the quadcopter.
 The anti-symmetric structure of the matrices multiplying $\dot{\bar{q}}$ is key to proving that the derivative of the kinetic energy in the augmented system is: 
 \begin{equation}
     \frac{d}{dt}k(\bar{q}, \dot{\bar{q}}) = \tau_e^T(t)\dot{q}(t) \label{kineticdt}
