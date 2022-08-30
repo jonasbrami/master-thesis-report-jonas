@@ -35,7 +35,7 @@ It is important to notice that the big difference between the python implementat
 The PX4 firmware of the IRIS model has its own low level attitude controller.
 
 
-The desired velocity fields are computed using Sympy (A Python library for symbolic ) for easy field and field gradient computation. Since most fields we used are derived from potential functions, we can easily obtain the field and field jacobian required by PVFC by symbolically differentiating their potentials or shaping functions.
+The desired velocity fields are computed using Sympy (A Python library for symbolic calculations) for easy field and field gradient computation. Since most fields we used are derived from potential functions, we can easily obtain the field and field jacobian required by PVFC by symbolically differentiating their potentials or shaping functions.
 
 \subsection{Full Sensor Placement pipeline in ROS/Gazebo/Pixhawk 4}
 In this implementation, we are using a real world quadrotor called IRIS quad provided in the Pixhawk 4 SITL package. 

@@ -77,8 +77,8 @@ In addition, when $\alpha$ approaches $\beta$, the $\alpha$ error should approac
    \caption{Beta error without drag}
    \label{fig:betaerrornodrag}
 \end{figure}
-By design, the augmented desired mechanical energy of the system is always equal to $\bar{E}$, and we compute the augmented mechanical energy such that:\\
-$\text{augmented mechanical energy} = \frac{1}{2}m_b\lVert\dot{q}\rVert^2 + \frac{1}{2}m_{fly}\lVert\dot{q}_{fly}\rVert^2 $
+By design, the augmented desired mechanical energy of the system is always equal to $\bar{E}$, and we compute the augmented mechanical energy given by:\\
+$\frac{1}{2}m_b\lVert\dot{q}\rVert^2 + \frac{1}{2}m_{fly}\lVert\dot{q}_{fly}\rVert^2 $. \\
 We successfully reproduced the results of \cite{li1999passive} for the $\beta$ error on a circular velocity field. We can see in figure \ref{fig:betaerrornodrag} that $\beta$ converges and the $\beta$ error converges to 0.
 
 \subsection{No drag forces with force wrench}
@@ -177,7 +177,7 @@ We can see how essential is this compensation term in the figures \ref{fig:velga
    \caption{circular field velocity comparison Gazebo - drag compensation experiment}
    \label{fig:velgazebocircularfcomp}
 \end{figure*}
-\subsubsection{World with wind gust}
+\subsubsection{World with Wrench}
 In the above Gazebo experiments, no external force (except drag) was applied on the system. 
 We present here an experiment where a force wrench was applied on the quadcopter during 5 seconds. 
 We will compare it with an experiment in the same conditions but without force wrench applied.
@@ -198,13 +198,14 @@ This experience also motivates injecting an initial energy into the system. Howe
 We could not run the wrench experiment for more than 100 seconds because the quad crashes. We can see one of the reasons why the crash occurs in figure \ref{fig:velgazebocircularfwrench}: The velocity of the flywheel is diverging, and the translational velocity of the quadcopter is also increasing. 
 This experiments shows that it is crucial to carefully select the linear drag terms because we might lose the passivity properties of the controller when it is too high.
 This experiments also shows how robust the controller is for passive contour following when external forces are applied on the quadcopter.
+A \href{https://youtu.be/NcAQGyCOlOk}{video} of this experiment is available on Youtube
 \subsection{Potential sink Field}
 In the following experiment, we will study the behavior of PVFC when the desired velocity field is the sink potential field described in section 3.
 In this section, PVFC will be under the regime of 2 successive potential sink field: The first one is a sink at point $(0,0,0.5)$ (only $+\hat{z}$) to gain altitude and
 the second one is a sink at point $(5,0,0.5)$ to reach the desired target point. 
-It should be noted that the linear force compensation had to be multiplied by ~4 in the potential sink experiments to accuratly follow the desired field.
+It should be noted that the linear force compensation had to be increased in the potential sink experiments to accuratly follow the desired field.
 This may be caused by the decreasing norm of the potential field when approaching the desired target point while the norm of the circular field is only affected by the distance from the quad to the closest point on the circle.  
-\subsubsection{Ebar study}
+\subsubsection{$\bar{E}$ study}
 \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_ebar_potential_2d.png}
@@ -233,7 +234,7 @@ Similarly to our circular field experiment, here to the drag compensation term i
 We can see that when no drag compensation is used, the augmented quadcopter system lose all of its mechanical energy and is unable to follow the desired potential field (see figure \ref{fig:trajgazebopotentialfcomp})
 \subsection{Sensor placement experiment}
 The sensor placement experiment starts in a similar way than the potential experience. 
-There is a obstacle with a shape of a cylinder positioned at $(2,0)$ with a radius of $0.2$ meters and a height of $3$.
+There is an obstacle with the shape of a cylinder positioned at $(2,0)$ with a radius of $0.2$ meters and a height of $3$.
 In a addition there is a wall spanning along the $\hat{y}$, $\hat{z}$ plane positioned at $x=5$
 This experiment is taking place in 4 phases:
 \begin{enumerate}

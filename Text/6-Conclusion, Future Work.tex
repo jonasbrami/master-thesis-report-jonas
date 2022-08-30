@@ -9,7 +9,7 @@ First, the linear approximation for the drag coefficient we used seems to be tas
 according to the total mechanical energy in the augmented system.\\
 In addition, we often struggled to choose a value for the gains parameter of PVFC $\bar{E}$ and $\gamma$. Multiple strategies could be used to solve this problem such as sampling the velocity field to know the minimum $\bar{E}$ required 
 such that the flywheel velocity never becomes an imaginary number. \\
-It would be also possible to think about an evolutionary algorithm based solution for finding the best gains for the task. For example, in the case of a countour following task, a fitness function could be defined as a function of the path tracking accuracy.
+It would be also possible to think about an evolutionary algorithm based solution for finding the best gains for the task. For example, in the case of a contour following task, a fitness function could be defined as a function of the path tracking accuracy.
 Another improvement could be to generalize the superquadratic detection spectrum to be able to detect any kind of superquadratic.\\
 It would also be possible to switch to a seleinoidale field in case the quad is stuck at the local minimum in the velocity field.\\
 Finally, we hardcoded the yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
