@@ -100,7 +100,8 @@ This experiment also exemplifies well the advantage of using velocity field inst
    \label{fig:trajtracknodragwrench}
 \end{figure}
 The radial reduction that could have occured in figure \ref{fig:trajtracknodragwrench} could have been a big issue in a task such as contour following where following the contour is more important than following a trajectory.
-In the contrary, figure \ref{fig:trajtracknodragwrench} shows that when external forces are applied, we are able to go back to the desired circular path without radial reduction.
+In the contrary, figure \ref{fig:trajtracknodragwrench} shows that when external forces are applied, we are able to go back to the desired circular path without radial reduction. 
+More precisely, we can control the amount of radial reduction we want to have by tuning the parameters $\alpha$ from equation \ref{eqn:circularfieldcons}: the smaller $\alpha$, the bigger the normal part will have in the velocity field. 
 In addition, we can observe what happens to the $\beta$ error when wrench is applied:
 \begin{figure}[h!]
    \centering

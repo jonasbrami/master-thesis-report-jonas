@@ -12,13 +12,15 @@ such that the flywheel velocity never becomes an imaginary number. \\
 It would be also possible to think about an evolutionary algorithm based solution for finding the best gains for the task. For example, in the case of a contour following task, a fitness function could be defined as a function of the path tracking accuracy.
 Another improvement could be to generalize the superquadratic detection spectrum to be able to detect any kind of superquadratic.\\
 It would also be possible to switch to a solenoidal field in case the quad is stuck at the local minimum in the velocity field.\\
-The yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
-Finally, in a real world situation we may not have access to a grasping arm to place a sensor therefore we would need to use the spherical velocity field developed in section 3. We implemented this field with SymEngine but did not have time to integrate in with our Gazebo experiment. 
+The desired yaw angle of the quad for all experiments (Python and Gazebo) is set to 0 but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle so that the depth camera will be in the direction of the desired velocity field.\\
+In a real world situation we may not have access to a grasping arm to place a sensor therefore we would need to use the spherical velocity field developed in section 3 to maintain contact. We implemented this field with SymEngine but did not have time to integrate in with our Gazebo experiment. \\
 
 The ethics checklist has been checked and all items have been ticked ``No`` except for the potential military application.
-We did not use any human, embryos, personal data, animals. The project was entirely developed in the UK, no environmental safety issues.
+We did not use any human, personal data or animals. The project was entirely developed in the UK without environmental safety issues.
 We only used open sourced software.
-This project could have potential military applications. The number of military applications for this kind of controller is endless, including but not limited to surveillance and placement of military sensors/explosives on military targets. However, I sincerely hope for the military that they have better options that our PVFC implementation.
+This project might have potential military applications despite the military having most likely far better options than this. 
+The number of military applications for this kind of controller are endless in many industries including the military. 
+It could be used to monitor infrastructures safety but also for safe placement of explosives thanks to the passivity and finite energy reservoir of the controller. This together with the path following properties under disturbances could also used as much in civilian applications as in military applications.
 
 \section{Running the code}
 The PVFC python implementation is available in \href{https://github.com/bsbretly/pvfc_sim/tree/devel-beta_error}{this branch}.\\

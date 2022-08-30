@@ -4,11 +4,19 @@ A velocity field is a function taking as input a state, $q$ and returns a 3-dime
 \subsubsection{Sink field for reaching the target}
 In \cite{mcinnes2003velocity}, the author chose to apply a logarithmic function on the distance between the current position and the goal position as a potential for the sink field. 
 However, we observed that using such a potential does not allow the robot to safely approach the goal point since when the distance approaches 0, the logarithmic function diverges.
-As a result, we decided to simply use the distance as a potential function. This will allow us to smoothly decrease the velocity of the UAV when approaching the desired goal point.
+As a result, we decided to simply use the distance as a potential function :
+\begin{align} % Use & sign to align, use \nonumber to write a line without number.
+    {V}_{3} = {Q}_{3} (({x}_{1}-\tilde{{x}_{1}})^2+({x}_{2}-\tilde{{x}_{2}}))^2 \\ 
+    \label{potentialdistance}
+\end{align}
+This will allow us to smoothly decrease the velocity of the UAV when approaching the desired goal point.
+Removing the logarithm from the sink potential can be problematic for more complex environement because the field is no longer a solution of the Laplace equation \ref{eq:Laplace} and therefore we lose the guarantees regarding the absence of a local minimum in the velocity field.
+In future works, it would be interesting to use the 2 approaches in the following way: begin planning under the regime of the field described in equation \ref{eqn:potentiallogdistance} to have the guarantee to arrive to the sink point (no local minimum), and when certain conditions are met, 
+such as having the sink point in the field of view, switch to this sink field \ref{potentialdistance} to safely decelerate and make contact smoothly.
 \subsubsection{Obstacle repulsive field}
 In our current solution, because of the simplicity of the environement and the convexity of the obstacles, we are only using the type 1 solution described in \cite{mcinnes2003velocity}, we only have a repulsive field normal to the surface of the obstacle.
-The main motivation of using potential velocity field for the obstacles is the simplicy and low complexity of computing those field values in real time. This is particularly useful when the power of the onboard computer is limited. 
-In addition, using potential based methods for the repulsive velocity field implementing obstacle avoidance is very useful since it is very modular: When a new obstacle is detected/removed, we just need to add or remove its potential for the sum of current potentials.
+The main motivation of using potential velocity field for the obstacles is the simplicity and low complexity of computing those field values in real time. This is particularly useful when the computational capabilities of the onboard computer is limited by a low power consumption ARM CPU. 
+Using potential based methods for the repulsive velocity field implementing obstacle avoidance is very efficient when there is a large amount of abstacles: When a new obstacle is detected/removed, we just need to add/remove its potential for the sum of current potentials.
 \subsubsection{Spherical field to maintain desired force }
 When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
 Since the arm has a fixed size and does not move, this section will describe a velocity field on the surface of a sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.\\
@@ -16,8 +24,7 @@ First we need to compute the feasible position of the CoM to apply the desired f
 We know that this position is unique because there is only one vertically stable pitch for a given desired force amplitude. The quadcopter needs to pitch to have a forward velocity because the quadcopter is underactuacted.\\
 We can generate the velocity field on the surface of the sphere to point on the tangent direction of the sphere in the direction of the stable pitch position. \\
 This field will have an amplitude proportional to the distance from this point.
-The planning strategy we described would also allow us to easily define a desirable range for the yaw angle depending on the type of sensor and on the friction coefficient of the target surface.
-Finally, we use a Passive Velocity Field Controller \cite{li1999passive} to follow this field to minimize the loss of kinetic energy to the environment when interacting with the surface.
+The planning strategy we described would also allow us to define a desirable range for the yaw and pitch angles depending on the type of sensor and on the friction coefficient of the target surface.
 Now we are going to describe how the spherical field is computed. 
 Let us recall that the cartesian to spherical coordinate change of variable is defined as
 \begin{equation} 
