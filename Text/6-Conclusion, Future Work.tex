@@ -4,7 +4,7 @@ We first implemented a simple passive velocity controller with simple dynamics o
 This implementation allowed us to reproduce results from the PVFC paper \cite{li1999passive}.
 Then we implemented the full pipeline of sensor placement using ROS, PX4, Gazebo and PCL and explained the different field\\
 
-Because of lack of time, we did not have time to improve the implementation but many steps could have been done to make it more robust.
+Because of lack of time, we could not improve the implementation but many steps could have been done to make it more robust.
 First, the linear approximation for the drag coefficient we used seems to be task specific and may need to be updated during flight. Therefore, another controller could be used to tune the linear drag coefficient 
 according to the total mechanical energy in the augmented system.\\
 In addition, we often struggled to choose a value for the gains parameter of PVFC $\bar{E}$ and $\gamma$. Multiple strategies could be used to solve this problem such as sampling the velocity field to know the minimum $\bar{E}$ required 
@@ -13,9 +13,10 @@ It would be also possible to think about an evolutionary algorithm based solutio
 Another improvement could be to generalize the superquadratic detection spectrum to be able to detect any kind of superquadratic.\\
 It would also be possible to switch to a solenoidal field in case the quad is stuck at the local minimum in the velocity field.\\
 The yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
-Finally, in a real world situation we may not have access to a grasping arm to place a sensor therefore we need would need to use the spherical velocity field developped in section 3. We implemented this field with SymEngine but did not have time to integrate in with our Gazebo experiment 
+Finally, in a real world situation we may not have access to a grasping arm to place a sensor therefore we would need to use the spherical velocity field developed in section 3. We implemented this field with SymEngine but did not have time to integrate in with our Gazebo experiment. 
+
 \section{Running the code}
 The PVFC python implementation is available in \href{https://github.com/bsbretly/pvfc_sim/tree/devel-beta_error}{this branch}.\\
 The PVFC ROS implementation is available in \href{https://github.com/bsbretly/pvfc_ws/tree/jonas-pcl}{this branch}.
 For both of them, a readme is available describing how to run it. 
-In addition, a video detailing how to run experiments on the ROS implementation is provided \href{https://github.com/bsbretly/pvfc_ws/tree/jonas-pcl}{here}
+In addition, a playlist of videos detailing how to run the experiments on the ROS/Python implementation is provided \href{https://www.youtube.com/watch?v=tSBsaKx5Zww&list=PLvZGCthLI9WrbS7W-F28ljQfRyHxxw-9p}{here}.

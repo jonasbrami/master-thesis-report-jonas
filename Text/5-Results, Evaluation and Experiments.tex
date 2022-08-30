@@ -49,7 +49,7 @@ However, using such compensation slightly decreases the precision of the velocit
 \end{figure}
 
 \subsection{No drag forces}
-In this second experiment, we remove the drag forces from the dynamics (we set the drag coefficients to 0).
+In this second experiment, we remove the drag forces from the dynamics by setting the drag coefficients to 0.
 We can see in the figure \ref{fig:pythonnodrag} that when far away from the desired path, the translational speed of the quadcopter is high while the rotation speed of the flywheel is low.
 This is happening because of the way the velocity field is constructed in equation \ref{eqn:circularfieldcons}, 
 the magnitude of the tangential component is constant but the magnitude of the normal component is proportional to the distance between the quad and the closest point in the circle.
@@ -91,7 +91,7 @@ and finally we let the quad follow the desired field for 120 seconds.
    \caption{trajectory and mechanical energy without drag and with wrench - Python POC }
    \label{fig:pythonnodragwrench}
 \end{figure*}
-The passivity properties of PVFC are well shown in figure \ref{fig:pythonnodragwrench}. We can see how the quadcopter is trading energy with the environement and dissipating the work of the wrench inside the augmented system.
+The passivity properties of PVFC are well shown in figure \ref{fig:pythonnodragwrench}. We can see how the quadcopter is trading energy with the environement and dissipating the work of the wrench into the augmented system.
 This experiment also exemplifies well the advantage of using velocity field instead of a traditional trajectory following based controller:
 \begin{figure}[h!]
    \centering
@@ -118,10 +118,10 @@ In the scatter trajectory plot that we will see in the following experiment, the
 This subsection contains graphs and experiment with the circular field planner.
 \subsubsection{$\bar{E}$ study}
 In this subsubsection, we try to gain intuition about the $\bar{E}$ parameter of the controller with the circular velocity field.
-Let us remember that $\bar{E}$ is the (desired) energy reservoir of the system such that the desired total mechanical of the system (meaning, the desired kinetic energy in the flywheel plus the desired kinetic energy coming from the desired translational velocity of the quadcopter).
-$\bar{E}$ is used in 2 places: The first is in the velocity field code where the flywheel velocity field is computed according to equation \ref{eqn:vfly}, the second one when computing $\tau_c$ in the coupling control law \ref{tauc}.
+Let us remember that $\bar{E}$ is the (desired) energy reservoir of the system such that the desired total mechanical of the system (meaning, the desired kinetic energy in the flywheel plus the desired kinetic energy coming from the desired translational velocity of the quadcopter) is equal to $\bar{E}$.
+$\bar{E}$ is used in 2 places: The first is in the velocity field code where the flywheel velocity field is computed according to equation \ref{eqn:vfly}, the second one when computing $\tau_c$ in the coupling control law in equation \ref{tauc}.
 We can see in figures \ref{fig:trajgazebocircularebar} and \ref{fig:velgazebocircularebar} that the velocity of the quadcopter with the lowest $\bar{E}$ is the highest.
-This is expected since the amplitude of $\tau_c$ is inverse proportional to $\bar{E}$
+This is expected since the amplitude of $\tau_c$ is inversely proportional to $\bar{E}$
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_ebar_circular.png}
@@ -135,12 +135,12 @@ This is expected since the amplitude of $\tau_c$ is inverse proportional to $\ba
    \label{fig:velgazebocircularebar}
 \end{figure*}
 \subsubsection{$\gamma$ study}
-The $\gamma$ parameter of PVFC controls the amplide of the feedback term of the PVFC control law \ref{tauf}.
-We would expect to follow the desired velocity field more accuratly when $\gamma$ is higher.
-As we can see in figure \ref{fig:trajgazebocirculargamma}, the circles are draw more accurately for $\gamma=0.5$.
-When the field is not smooth enough, increasing gamma may cause instability because the desired attitude will change faster according to the direction of the desired
-velocity field and if those changes are too fast, the quad may turn over on its back and fall to the ground. The root cause of this problem is that $\gamma$ can be seen as a proportional gain (\ref{eqn:pid}) and setting it too high without a derivative and integral term causes instability in the control loop and the quad attitude.
-We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher the $\gamma$ the lower the $\beta$ error. This is expected as higher $\gamma$ (to some extent, after some threshold the system becauses instable) means faster convergence to the desired velocity field.
+The $\gamma$ parameter of PVFC controls the amplitude of the feedback term of the PVFC control law \ref{tauf}.
+We would expect to follow the desired velocity field more accurately when $\gamma$ is higher.
+As we can see in figure \ref{fig:trajgazebocirculargamma}, the circles are drawn more accurately for $\gamma=0.5$.
+When the field is not smooth enough, increasing $\gamma$ may cause instability because the desired attitude will change faster according to the direction of the desired
+velocity field and if those changes are too fast, the quad may turn over on its back and fall to the ground. The root cause of this problem is that $\gamma$ can be seen as a proportional gain (see equation \ref{eqn:pid}) and setting it too high without a derivative or integral term causes instability in the control loop and the quad attitude.
+We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher the $\gamma$ the lower the $\beta$ error. This is expected as higher $\gamma$ (to some extent, above some threshold, the system becomes unstable) means faster convergence to the desired velocity field.
 
 \begin{figure*}[h!]
    \centering
@@ -179,7 +179,7 @@ We can see how essential is this compensation term in the figures \ref{fig:velga
 \end{figure*}
 \subsubsection{World with Wrench}
 In the above Gazebo experiments, no external force (except drag) was applied on the system. 
-We present here an experiment where a force wrench was applied on the quadcopter during 5 seconds. 
+We present here an experiment where a force wrench was applied on the quadcopter lasting for 5 seconds. 
 We will compare it with an experiment in the same conditions but without force wrench applied.
 \begin{figure*}[h!]
    \centering
@@ -193,17 +193,17 @@ We will compare it with an experiment in the same conditions but without force w
    \caption{circular field velocity comparison Gazebo - Wrench experiment}
    \label{fig:velgazebocircularfwrench}
 \end{figure*}
-We can see in figure \ref{fig:trajtracknodragwrench} that the wrench is injecting energy into the augmented system and that PVFC performs much better in term of velocity field tracking when it is dissipating this external work inside the augmented system. 
-This experience also motivates injecting an initial energy into the system. However, it is hard to finetune the linear drag coefficient together with the amount of injected energy.
+We can see in figure \ref{fig:trajtracknodragwrench} that the wrench is injecting energy into the augmented system and that PVFC performs much better in terms of velocity field tracking when it is dissipating this external work into the augmented system. 
+This experiment also motivates injecting an initial energy into the system. However, it is hard to finetune the linear drag coefficient together with the amount of injected energy.
 We could not run the wrench experiment for more than 100 seconds because the quad crashes. We can see one of the reasons why the crash occurs in figure \ref{fig:velgazebocircularfwrench}: The velocity of the flywheel is diverging, and the translational velocity of the quadcopter is also increasing. 
-This experiments shows that it is crucial to carefully select the linear drag terms because we might lose the passivity properties of the controller when it is too high.
-This experiments also shows how robust the controller is for passive contour following when external forces are applied on the quadcopter.
+This experiment shows that it is crucial to carefully select the linear drag terms because we might lose the passivity properties of the controller when it is too high.
+It also shows how robust the controller is for passive contour following when external forces are applied on the quadcopter.
 A \href{https://youtu.be/NcAQGyCOlOk}{video} of this experiment is available on Youtube
 \subsection{Potential sink Field}
 In the following experiment, we will study the behavior of PVFC when the desired velocity field is the sink potential field described in section 3.
-In this section, PVFC will be under the regime of 2 successive potential sink field: The first one is a sink at point $(0,0,0.5)$ (only $+\hat{z}$) to gain altitude and
+In this section, PVFC will be under the regime of 2 successive potential sink fields: The first one is a sink at point $(0,0,0.5)$ (only $+\hat{z}$) to gain altitude and
 the second one is a sink at point $(5,0,0.5)$ to reach the desired target point. 
-It should be noted that the linear force compensation had to be increased in the potential sink experiments to accuratly follow the desired field.
+It should be noted that the linear force compensation had to be increased in the potential sink experiments to accurately follow the desired field.
 This may be caused by the decreasing norm of the potential field when approaching the desired target point while the norm of the circular field is only affected by the distance from the quad to the closest point on the circle.  
 \subsubsection{$\bar{E}$ study}
 \begin{figure}[h!]
@@ -212,8 +212,8 @@ This may be caused by the decreasing norm of the potential field when approachin
    \caption{potential field velocity 2d trajectory comparison Gazebo - ebar experiment}
    \label{fig:vel2dgazeboebarpotential}
 \end{figure}
-We can see that the trajectory in the $\hat{x}$ and $\hat{y}$ axis are more stable around the desired state when $\bar{E}=200$.
-However, if we set $\bar{E}$ to be too small, the desired speed of the flywheel (\ref{eqn:vfly}) may not be a real number which will cause the controller to stop working.
+We can see that the trajectories in the $\hat{x}$ and $\hat{y}$ axis are more stable around the desired state when $\bar{E}=200$.
+However, if we set $\bar{E}$ to be too small, the desired speed of the flywheel (see equation \ref{eqn:vfly}) may not be a real number which will cause the controller to stop working.
 Therefore, it is important to finetune this parameter according to the desired velocity field such that it would be the minimum necessary to have a real flywheel desired velocity.
 It should also be noted that the spike in the $\beta$ error when switching field is higher when $\bar{E}$ is small (see figure \ref{fig:betaerrorgazebopotentialebar})
 \begin{figure*}[h!]
@@ -224,29 +224,29 @@ It should also be noted that the spike in the $\beta$ error when switching field
 \end{figure*}
 
 \subsubsection{force compensation study}
-Similarly to our circular field experiment, here to the drag compensation term is essential to properly follow the desired velocity field. 
+Similar to our circular field experiment, approximating the drag compensation term is essential to properly following the desired velocity field. 
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_fcomp_potential.png}
    \caption{circular field trajectory Gazebo - drag compensation experiment}
    \label{fig:trajgazebopotentialfcomp}
 \end{figure*}
-We can see that when no drag compensation is used, the augmented quadcopter system lose all of its mechanical energy and is unable to follow the desired potential field (see figure \ref{fig:trajgazebopotentialfcomp})
+We can see that when no drag compensation is used, the augmented quadcopter system loses all of its mechanical energy and is unable to follow the desired potential field (see figure \ref{fig:trajgazebopotentialfcomp})
 \subsection{Sensor placement experiment}
-The sensor placement experiment starts in a similar way than the potential experience. 
-There is an obstacle with the shape of a cylinder positioned at $(2,0)$ with a radius of $0.2$ meters and a height of $3$.
-In a addition there is a wall spanning along the $\hat{y}$, $\hat{z}$ plane positioned at $x=5$
+The sensor placement experiment starts in a similar way to the potential field experiments. 
+There is an obstacle with the shape of a cylinder positioned at $(2,0)m$ with a radius of $0.2[meter]$ meters and a height of $3[meter]$.
+In a addition there is a wall spanning along the $\hat{y}$, $\hat{z}$ plane positioned at $x=5[meter]$
 This experiment is taking place in 4 phases:
 \begin{enumerate}
-   \item take off following the sink field at $(0,0,0.5)$ to gain altitude, when the desired altitude was reached, we switch to the next phase 
-   \item Following the sink field with sink point at $(5,0,0.5)$, this is to reach the wall. While following this field, the obstacle will be encountered by the quadcopter and the PCL node will signal to the velocity field node the new obstacle. Upon this signal, the velocity field adds a repulsive field to the current sink field. 
-   \item When the wall has been reached and contact was made between the arm and the wall, the modified grasping arm plugin from gazebo will activate for 10 seconds.
-   \item After the grasping arm disengage, a signal is sent to the velocity field node to update the sink field with a sink point on the floor close to the wall.
+   \item Take off following the sink field at $(0,0,0.5)[meter]$ to gain altitude, when the desired altitude is reached, we switch to the next phase 
+   \item Following the sink field with sink point at $(5,0,0.5)[meter]$, this is to reach the wall. While following this field, the obstacle will be encountered by the quadcopter and the PCL node will signal to the velocity field node the new obstacle. Upon this signal, the velocity field adds a repulsive field to the current sink field. 
+   \item When the wall has been reached and contact has been made between the arm and the wall, the modified grasping arm plugin from gazebo will activate for 10 seconds.
+   \item After the grasping arm disengages, a signal is sent to the velocity field node to update the sink field with a sink point on the floor close to the wall.
 \end{enumerate}
-A state machine is implemented in the velocity field node to switch and chose the right velocity field for each step. 
+A state machine is implemented in the velocity field node to switch and chosoe the right velocity field for each step. 
 A \href{https://www.youtube.com/watch?v=bR4PmFp38t0}{video} of this Gazebo experiment was published to Youtube. (Please watch with subtitles)
-Let us analyse the beta error and trajectory of this experiment.
-We can see in figure \ref{fig:trajgazebosensor} that the flywheel energy is state when reaching the wall and increasing when contact is made. This is because of the passivity of PVFC dissipating the work of the wall inside the augmented system.
+Let us analyse the $\beta$ error and trajectory of this experiment.
+We can see in figure \ref{fig:trajgazebosensor} that the flywheel energy is stable when reaching the wall and increasing when contact is made. This is because the passivity of PVFC dissipates the work of the wall into the augmented system.
 The $\beta$ error in figure \ref{fig:betaerrorgazebosensor} is spiking at each field update, the spike at $t=10s$ is due to the change from take off field to approach field (the field to reach the wall). 
 The spike at $t=30s$ is due to the added cylinder repulsive field to the approach field.
 The spike at $t=45s$ is due to the contact with the wall. Between $t=45s$ and $t=55s$, the $\beta$ error norm is unable to decrease because of the work from the wall on the tip of the arm. 
