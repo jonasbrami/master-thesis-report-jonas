@@ -110,3 +110,25 @@ We can see in figure \ref{fig:rotafromshaping} an example of vortex field around
     \caption{Solenoidale field from shaping function}
     \label{fig:rotafromshaping}
 \end{figure}
+
+\subsection{PID control \cite{johnson2005pid}}
+In this subsection we will briefly describe what is a PID controller and how it is related to our task.
+A PID (Proportional, Integral, Derivative) controller is a tool used to regulate the output $y(t)$ of a system to converge toward a setpoint value $SP(t)$ according an error $e(t)=y(t)-sp(t)$, the time derivate of this error and the time integration of this error. 
+It is defined by gain parameters $K_p$, $K_i$, $K_d$. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/PID_en.svg.png}
+    \caption{PID block diagram from wikipedia}
+    \label{fig:blockpid}
+\end{figure}
+The block diagram \ref{fig:blockpid} illustrate how this works. Let's assume a simple exemple where controler signals a new output every 1 second. 
+Then we have : 
+\begin{equation}
+    u(t+1) = K_p e(t) + K_d \frac{de(t)}{dt} + K_i\int_0^te(t)dt
+    \label{eqn:pid}
+\end{equation}
+The proportional gain is straightforward, we want to $y(t)$ to get closer to $SP(t)$.
+However, in a system with inertia, we might overshoot the setpoint when only using a proportional term. Therefore, to take into account how fast the error is decreasing (or increasing), we use a derivative term.
+Finally, the integral term is to take into account historical value of the error and decrease the residual error.
+The value of the gain parameters is application dependant.
+In section 4, we will discuss use a PD controler (same as PID but without integral term) to control the attitude of the quadcopter in the Python implementation.

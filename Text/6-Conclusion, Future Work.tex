@@ -12,5 +12,10 @@ such that the flywheel velocity never becomes an imaginary number. \\
 It would be also possible to think about an evolutionary algorithm based solution for finding the best gains for the task. For example, in the case of a contour following task, a fitness function could be defined as a function of the path tracking accuracy.
 Another improvement could be to generalize the superquadratic detection spectrum to be able to detect any kind of superquadratic.\\
 It would also be possible to switch to a solenoidal field in case the quad is stuck at the local minimum in the velocity field.\\
-Finally, we hardcoded the yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
-
+The yaw angle of the quad for all experiments but the depth camera has a limited field of view, to always be able to detect obstacle in the direction of movement, it would be necessary to set the desired yaw angle to be in the direction of the desired velocity field.
+Finally, in a real world situation we may not have access to a grasping arm to place a sensor therefore we need would need to use the spherical velocity field developped in section 3. We implemented this field with SymEngine but did not have time to integrate in with our Gazebo experiment 
+\section{Running the code}
+The PVFC python implementation is available in \href{https://github.com/bsbretly/pvfc_sim/tree/devel-beta_error}{this branch}.\\
+The PVFC ROS implementation is available in \href{https://github.com/bsbretly/pvfc_ws/tree/jonas-pcl}{this branch}.
+For both of them, a readme is available describing how to run it. 
+In addition, a video detailing how to run experiments on the ROS implementation is provided \href{https://github.com/bsbretly/pvfc_ws/tree/jonas-pcl}{here}

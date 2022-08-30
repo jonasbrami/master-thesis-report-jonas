@@ -2,18 +2,16 @@
 % Delete the text and write your Introduction here:
 %------------------------------------
 The problem we aimed to solve during this project is the placement of a sensor on a specific target point on a surface using a fixed manipulator arm mounted on the top of an unmanned quadcopter.
-
 A quacopter is an underactuacted helicopter with four rotors. A robot is said to be underactuated when arbitrary configurations cannot be realized.\\
 In the last ten years, research about UAV controls accelerated drastically with many applications in the civilian industry in a variety of areas.\\
 Monitoring and sensing tasks are traditionally operated by human but can be complicated (require expert, highly trained technicians), expensive,  and dangerous for the human operator (when the point of interest is hard to reach, the human manipulator may need special training and equipement to reach the point of interest). For example, big structures like bridges need to undergo regular inspections to ensure there are no cracks or other signs of structural fatigue.\\
 Using UAVs for such tasks would not only reduce cost of maintance of those structures, but also increase the security of both the human manipulator and the civilians using it. \\
 Sensor placement on surfaces using UAVs  is an active field of research and we will propose a solution based on velocity fields.\\
-
 In this project we present an application of the Passive Velocity Field controller (PVFC) using Velocity field derived from the gradient of a potential or a shaping function; integrated with a depth camera for active obstacle avoidance and a grasping arm for sensor placement. We also provide an analysis of the controller behavior under multiple types of fields and controller parameters.\\
-
 This project was done in 2 steps: The first one was the implementation of a Passive Velocity Field controller with simple quadcopter dynamics and physics on Python. The simplicity of this simulation has allowed us to easily debug the controller, verify that our implementation is behaving as expected, and get a high level understanding of the parameters of this controller. 
 The second step was implementing the full Sensor Placement pipeline using ROS/Pixhawk 4/Gazebo. Robot Operating System is a platform to build robot application where task specific nodes interact together based on subscribing and advertising to topics. Gazebo is a simulator providing real world physics, a variety of plugins that we used to implement a grasping arm to simulate a Sensor Placement task. Pixhawk 4 is an open source autopilot sotfware integrated with ROS to provide seamless communication between our ROS controller and the quadcopter actuators.
-Those implementations will be further detailed in section \ref{Implementation section}.
+Those implementations will be further detailed in section \ref{Implementation section}.\\
+To sum up, our contribution for this project are the 2 cascade implementations of PVFC in Python and Gazebo in the translational domain, the potential based dynamic velocity fields, an integration of Point Cloud Library and gazebo plugin with PVFC to perform the sensor placement task.
 
 This work would not have been possible without the initial implementations and huge help of my Project supervisor Brett Stephens ! 
 

@@ -7,6 +7,8 @@ However, we observed that using such a potential does not allow the robot to saf
 As a result, we decided to simply use the distance as a potential function. This will allow us to smoothly decrease the velocity of the UAV when approaching the desired goal point.
 \subsubsection{Obstacle repulsive field}
 In our current solution, because of the simplicity of the environement and the convexity of the obstacles, we are only using the type 1 solution described in \cite{mcinnes2003velocity}, we only have a repulsive field normal to the surface of the obstacle.
+The main motivation of using potential velocity field for the obstacles is the simplicy and low complexity of computing those field values in real time. This is particularly useful when the power of the onboard computer is limited. 
+In addition, using potential based methods for the repulsive velocity field implementing obstacle avoidance is very useful since it is very modular: When a new obstacle is detected/removed, we just need to add or remove its potential for the sum of current potentials.
 \subsubsection{Spherical field to maintain desired force }
 When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
 Since the arm has a fixed size and does not move, this section will describe a velocity field on the surface of a sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.\\
@@ -86,20 +88,20 @@ From there it is straightforward how to implement a circular velocity field with
 \end{align}
 \subsection{Quadcopter modeling}
 \subsubsection{Platform}
-Similarly to the platform used in "An Aerial Parallel Manipulator with Shared Compliance", our system is composed of two subsytems: The underactuated quadrotor base (for which we have software in the loop integration given by PX4) and the fixed manipulator arm above the center of mass of the quad.
+Similarly to the platform used in ``An Aerial Parallel Manipulator with Shared Compliance`` \cite{Stephens2022}, the system is composed of two subsytems: The underactuated quadrotor base (for which we have software in the loop integration given by PX4) and the fixed manipulator arm above the center of mass of the quad.
 This system is underactued because in the base frame of this quad, the only thrust direction for the quadcopter is in the $z$ axis in the frame of the base of the quad, the rotors cannot move relative to the base of the quad. Therefore, the IRIS model control inputs are a quarternion vector and a thrust amplitude. However, the output of the passive controller for the non-augmented translational domain is a thrust vector $\Lambda \in\mathbb R_3 $, therefore we will need to convert this desired thrust to the desired format.
 In addition to the fixed manipulator arm, a depth camera is mounted on the quad base. We use the depth camera model provided by Pixhawk 4 with IRIS that simulates an intel realsense r200. We use the transform provided in the PX4 obstacle avoidance package to transform from the frame of the camera to the frame of the quadcopter base, and we use the PX4 odometry information to transform from the base to the ground gazebo frame.
 
 \subsubsection{Translational dynamics}
 
 The dynamics that we take into account in our passive control strategy are only in the translational domain. The passive velocity field controller output is a thurst vector and PX4 translates this desired thurst into actual angular velocities for each one of the rotors 
-$\Omega = (\bar{\omega_1}, \bar{\omega_2}, \bar{\omega_3}, \bar{\omega_4})$. PVFC only acts on the translational level and not at the rotational level and has no knowledge or control about the speed of thoses rotors and therefore the passivity of this controller is only at the translational level. 
+$\Omega = (\bar{\omega_1}, \bar{\omega_2}, \bar{\omega_3}, \bar{\omega_4})$. PVFC only acts on the translational level and not at the rotational level and therefore the passivity of this controller is only at the translational level. 
 This quadcopter is an underactuacted system because for a given translational velocity, only a subset of attitudes are feasible. As a result, it is not possible to control all 6 degrees of freedom independantly (3 translational, 3 rotational).
  
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 
-They later present the passive velocity field controller whose objective is to "maintain an energetically passive relationship between the manipulator under closed loop control and
-its physical environment, while causing the manipulator to perform the desired task." 
+They later present the passive velocity field controller whose objective is to ``maintain an energetically passive relationship between the manipulator under closed loop control and
+its physical environment, while causing the manipulator to perform the desired task.``
 We will explain each one of those arguments and relate them to our sensor placement task.
 \subsubsection{Velocity fields for planning}
 The classical approach to do planning is to encode the task into a timed trajectory $Q:\mathbb R_{\ge 0} \rightarrow G$ where G is the n-dimensional configuration manifold for the manipulator and uses a controller to minimize the state trajectory error.

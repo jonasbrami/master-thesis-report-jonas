@@ -121,7 +121,7 @@ In this subsubsection, we try to gain intuition about the $\bar{E}$ parameter of
 Let us remember that $\bar{E}$ is the (desired) energy reservoir of the system such that the desired total mechanical of the system (meaning, the desired kinetic energy in the flywheel plus the desired kinetic energy coming from the desired translational velocity of the quadcopter).
 $\bar{E}$ is used in 2 places: The first is in the velocity field code where the flywheel velocity field is computed according to equation \ref{eqn:vfly}, the second one when computing $\tau_c$ in the coupling control law \ref{tauc}.
 We can see in figures \ref{fig:trajgazebocircularebar} and \ref{fig:velgazebocircularebar} that the velocity of the quadcopter with the lowest $\bar{E}$ is the highest.
-This is very counterintuitive since $\bar{E}$ represents the total available mechanical energy in the desired velocity field.
+This is expected since the amplitude of $\tau_c$ is inverse proportional to $\bar{E}$
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_ebar_circular.png}
@@ -139,8 +139,8 @@ The $\gamma$ parameter of PVFC controls the amplide of the feedback term of the 
 We would expect to follow the desired velocity field more accuratly when $\gamma$ is higher.
 As we can see in figure \ref{fig:trajgazebocirculargamma}, the circles are draw more accurately for $\gamma=0.5$.
 When the field is not smooth enough, increasing gamma may cause instability because the desired attitude will change faster according to the direction of the desired
-velocity field and if those changes are too fast, the quad may turn over on its back and fall to the ground. This root cause of this problem is the underactuation of the quad and its lack of stability for high pitches.
-We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher the $\gamma$ the lower the $\beta$ error. This is expected as higher gamma means faster convergence to the desired velocity field.
+velocity field and if those changes are too fast, the quad may turn over on its back and fall to the ground. The root cause of this problem is that $\gamma$ can be seen as a proportional gain (\ref{eqn:pid}) and setting it too high without a derivative and integral term causes instability in the control loop and the quad attitude.
+We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher the $\gamma$ the lower the $\beta$ error. This is expected as higher $\gamma$ (to some extent, after some threshold the system becauses instable) means faster convergence to the desired velocity field.
 
 \begin{figure*}[h!]
    \centering
@@ -265,15 +265,3 @@ The small spike at $t=75s$ is due to the quad landing causing work from the floo
    \label{fig:betaerrorgazebosensor}
 \end{figure*}
 
-
-%  \begin{itemize}
-%     \item Calibrate thrust
-%     \item  introduction of compensation terms for friction
-%     \item finetuning (Ax Ay Az). too high cause speed to diverge, too low the quad lose all its energy and stop. 
-%     \item beta error
-%     \item presents experiences in different worlds
-%     \item using wind world helped lead the way to understand the need for compensation
-%     \item Analyze Ebar, Gamma
-%  \end{itemize}
-%  \newpage
- 

@@ -47,7 +47,7 @@ This node subscribes to the mavros odometry topic, computes the velocity field a
 We implemented all the velocity field using the symbolic math library SymEngine so that all gradient computations from potential or shaping function would be done automatically. 
 In addition, this node is implementing a state machine such that in each state, a specific field is being used.
 Specifically, the first state gives a sink to get altitude, the second state is a sink field to approach the target, 
-the third state represents the contact phase with the wall (the node subscribes to a topic called "grasping" to know if the grasping arm is currently activated). It starts when an engagement signal is received from the grasping arm and it finishes when a disengagment signal is received from the grasping arm. 
+the third state represents the contact phase with the wall (the node subscribes to a topic called ``grasping`` to know if the grasping arm is currently activated). It starts when an engagement signal is received from the grasping arm and it finishes when a disengagment signal is received from the grasping arm. 
 The last state is to get away from the wall and land, we use a sink field to implement it.
 We implemented an obstacle avoidance system for generic superquadratic obstacles, upon obstacle detection, we compute the avoidance field for this obstacle from the appropriate shaping function, an irrotational field is generated to avoid the obstacle. This node subscribes to an obstacle topic to know when new obstacles have been detected. 
 \subsubsection{PVFC ROS Node}
@@ -67,7 +67,7 @@ It works in the following way:
     \item If a cylinder was detected, we transform the position of the cylinder from the depth camera frame to the gazebo world frame and we publish it to the cylinder topic for the velocity field node to update the desired velocity field
 \end{itemize}
 \subsubsection{Grasping arm Gazebo-ROS plugin}    
-This node reuses the code of the vaccuum arm of Gazebo, but it was modified so that could be "attached" to the moving IRIS model and fixed to a wall in Gazebo. 
+This node reuses the code of the vaccuum arm of Gazebo, but it was modified so that could be attached to the moving IRIS model and fixed to a wall in Gazebo. 
 
 \begin{figure*}[h!]
     \centering
