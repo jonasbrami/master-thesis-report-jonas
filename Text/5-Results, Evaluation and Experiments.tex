@@ -1,10 +1,11 @@
 \section{Results, Evaluation and Experiments}
 In this section, we will discuss the results obtained in multiple conditions. Those data were recorded using ROSBag and were parsed using the ROSBag python module.
+ROSbag is a program included with RORS, it is used to store and replay the messages published on ROS topics by ROS node.
 We provide a jupyter notebook in the repository that facilitates drawing all the relevant graphs with a convenient way of storing all the parsed bags inside a pickle file.
 
 \subsection{Compensation for drag}
-In the first experiment, we will justify the need for a air drag compensation term. 
-The velocity field we use in the circular velocity field based on \cite{mcinnes2003velocity}.
+In the first experiment, we will justify the need for an air drag compensation term. 
+The velocity field we use in the circular velocity field is based on \cite{mcinnes2003velocity}.
 \subsubsection{Experience without drag compensation}
 \begin{figure*}[h!]
    \centering
@@ -13,10 +14,10 @@ The velocity field we use in the circular velocity field based on \cite{mcinnes2
    \label{fig:pythonnocomp}
 \end{figure*}
 On the both of figure \ref{fig:pythonnocomp}, we can see the trajectory of the quadcopter, the left scatter plot of the trajectory is colored according to the
-translational velocity the quadcopter while the right scatter plot is colored according to the angular velocity of the fictitious flywheel.
-On both subplot, the quiver plot represents the desired velocity field
+translational velocity of the quadcopter while the right scatter plot is colored according to the angular velocity of the fictitious flywheel.
+On both subplots, the quiver plot represents the desired velocity field.
 We can see that when we do not introduce a drag force compensation, the quad translational velocity goes to zero. 
-This is explained by the fact by the quadcopter thrust given by PVFC has a too low amplitude to compensate the drag force, the quad decelerate.
+This is explained by the fact by the quadcopter thrust given by PVFC has a too low amplitude to compensate the drag force and consequently the quad decelerates.
 The amplitude of the flywheel velocity is not affected by this drag because we defined a perfect no friction flywheel.\\
 These subplots are useful to observe how energy is being transfered between the fictitious flywheel and the quadcopter. 
 We can see that as expected from equation \ref{eqn:vfly}, the faster the quad is going the slower the fictitious flywheel is spinning.
@@ -28,9 +29,9 @@ We can see that as expected from equation \ref{eqn:vfly}, the faster the quad is
    \label{fig:trajtracknocomp}
 \end{figure}
 
-Despite the total stop, we can see from the figure \ref{fig:trajtracknocomp} that the field is accuratly followed
+Despite the total stop, we can see from the figure \ref{fig:trajtracknocomp} that the field is accurately followed.
 \subsubsection{Experience with drag compensation}
-This experiment is the same as the last one except that we add to the desired pvfc thrust output the compensation term $\tau_{comp} = C\cdot \dot{q}$ 
+This experiment is the same as the last one except that we add to the desired PVFC thrust output the compensation term $\tau_{comp} = C\cdot \dot{q}$ 
 where $C$ is current translational coriolis matrix and $\dot{q}$ is the current translational velocity of the quadcopter.
 \begin{figure*}[h!]
    \centering
@@ -39,7 +40,7 @@ where $C$ is current translational coriolis matrix and $\dot{q}$ is the current 
    \label{fig:pythoncomp}
 \end{figure*}
 We can see in figure \ref{fig:pythoncomp} that introducing this force compensation allows the quad to continue moving despite drag forces. 
-However, use such compensation slightly decreases the precision of the velocity field tracking (figure \ref{fig:trajtrackcomp}). It is not clear why this is happening.
+However, using such compensation slightly decreases the precision of the velocity field tracking (figure \ref{fig:trajtrackcomp}). It is not clear why this is happening.
 \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/velocitytrackingpythoncomp.png}
@@ -50,7 +51,7 @@ However, use such compensation slightly decreases the precision of the velocity 
 \subsection{No drag forces}
 In this second experiment, we remove the drag forces from the dynamics (we set the drag coefficients to 0).
 We can see in the figure \ref{fig:pythonnodrag} that when far away from the desired path, the translational speed of the quadcopter is high while the rotation speed of the flywheel is low.
-This is happening because of the way the veloicty field is constructed in equation \ref{eqn:circularfieldcons}, 
+This is happening because of the way the velocity field is constructed in equation \ref{eqn:circularfieldcons}, 
 the magnitude of the tangential component is constant but the magnitude of the normal component is proportional to the distance between the quad and the closest point in the circle.
 We can observe how energy is being traded between the quad and the flywheel when the quad approaches the desired path.
 \begin{figure*}[h!]
@@ -59,7 +60,7 @@ We can observe how energy is being traded between the quad and the flywheel when
    \caption{trajectory and mechanical energy without drag }
    \label{fig:pythonnodrag}
 \end{figure*}
-It should also be noted that the desired path is exactly followed in opposition to the last experiment with drag compensation (see figure \ref{fig:trajtracknodrag})
+It should also be noted that the desired path is exactly followed in opposition to the last experiment with drag compensation (see figure \ref{fig:trajtracknodrag}).
 \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/velocitytrackingpythonnodrag.png}
@@ -67,8 +68,8 @@ It should also be noted that the desired path is exactly followed in opposition 
    \label{fig:trajtracknodrag}
 \end{figure}
 We explained in section 3 that PVFC has interesting properties regarding the velocity tracking error (eq \ref{alphaerror}). 
-The author in \cite{li1999passive} explains that When no external forces are applied on the quadcopter, $\alpha$ should approach the square root of $\beta^2 = \frac{\text{augmented mechanical energy}}{\text{augmented desired mechanical energy}}$.\\
-In addition, when $\alpha$ approach $\beta$, the $alpha$ error should approach 0.
+In \cite{li1999passive}, the author explains that when no external forces are applied on the quadcopter, $\alpha$ should approach the square root of $\beta^2 = \frac{\text{augmented mechanical energy}}{\text{augmented desired mechanical energy}}$.\\
+In addition, when $\alpha$ approaches $\beta$, the $\alpha$ error should approach 0.
 
 \begin{figure}[h!]
    \centering
@@ -76,13 +77,14 @@ In addition, when $\alpha$ approach $\beta$, the $alpha$ error should approach 0
    \caption{Beta error without drag}
    \label{fig:betaerrornodrag}
 \end{figure}
-By design, the augmented desired mechanical energy of the system is always equal to $\bar{E}$, and we compute the augmented mechanical energy such that:\\ $\text{augmented mechanical energy} = \frac{1}{2}m_b\lVert\dot{q}\rVert + \frac{1}{2}m_{fly}\lVert\dot{q}_{fly}\rVert $
+By design, the augmented desired mechanical energy of the system is always equal to $\bar{E}$, and we compute the augmented mechanical energy such that:\\
+$\text{augmented mechanical energy} = \frac{1}{2}m_b\lVert\dot{q}\rVert^2 + \frac{1}{2}m_{fly}\lVert\dot{q}_{fly}\rVert^2 $
 We successfully reproduced the results of \cite{li1999passive} for the $\beta$ error on a circular velocity field. We can see in figure \ref{fig:betaerrornodrag} that $\beta$ converges and the $\beta$ error converges to 0.
 
 \subsection{No drag forces with force wrench}
 The third experiment is done in 3 phases: In the first one we let the quad follow the circular field for 120 seconds, 
 then we apply an external force on the quad in the $-\hat{y}$ direction for 10 seconds,
-and finaly we let the quad follow the desired field for 120 seconds.
+and finally we let the quad follow the desired field for 120 seconds.
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/python-nodrag-wrench.png}
@@ -90,14 +92,14 @@ and finaly we let the quad follow the desired field for 120 seconds.
    \label{fig:pythonnodragwrench}
 \end{figure*}
 The passivity properties of PVFC are well shown in figure \ref{fig:pythonnodragwrench}. We can see how the quadcopter is trading energy with the environement and dissipating the work of the wrench inside the augmented system.
-This experiment also exemplify well the advantage of using velocity field instead of a traditional trajectory following based controller:
+This experiment also exemplifies well the advantage of using velocity field instead of a traditional trajectory following based controller:
 \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/velocitytrackingpythonnodragwrench.png}
    \caption{Trajectory tracking without drag with wrench - Python POC }
    \label{fig:trajtracknodragwrench}
 \end{figure}
-The radial reduction that could have occured in figure \ref{fig:trajtracknodragwrench} could have been a big issue in a task such as countour following where following the countour is more important than following a trajectory.
+The radial reduction that could have occured in figure \ref{fig:trajtracknodragwrench} could have been a big issue in a task such as contour following where following the contour is more important than following a trajectory.
 In the contrary, figure \ref{fig:trajtracknodragwrench} shows that when external forces are applied, we are able to go back to the desired circular path without radial reduction.
 In addition, we can observe what happens to the $\beta$ error when wrench is applied:
 \begin{figure}[h!]
@@ -113,8 +115,8 @@ We can see how PVFC dissipates the external force and makes the $\beta$ error co
 Now we are going to show experiments done on the Gazebo simulation.
 In the scatter trajectory plot that we will see in the following experiment, the color represents the velocity of the flywheel.
 \subsection{Circular Field}
-This subsection contains graphs and experiment with the circular field planner
-\subsubsection{Ebar study}
+This subsection contains graphs and experiment with the circular field planner.
+\subsubsection{$\bar{E}$ study}
 In this subsubsection, we try to gain intuition about the $\bar{E}$ parameter of the controller with the circular velocity field.
 Let us remember that $\bar{E}$ is the (desired) energy reservoir of the system such that the desired total mechanical of the system (meaning, the desired kinetic energy in the flywheel plus the desired kinetic energy coming from the desired translational velocity of the quadcopter).
 $\bar{E}$ is used in 2 places: The first is in the velocity field code where the flywheel velocity field is computed according to equation \ref{eqn:vfly}, the second one when computing $\tau_c$ in the coupling control law \ref{tauc}.
@@ -132,10 +134,10 @@ This is very counterintuitive since $\bar{E}$ represents the total available mec
    \caption{circular field velocity comparison Gazebo - $\bar{E}$ experiment}
    \label{fig:velgazebocircularebar}
 \end{figure*}
-\subsubsection{Gamma study}
+\subsubsection{$\gamma$ study}
 The $\gamma$ parameter of PVFC controls the amplide of the feedback term of the PVFC control law \ref{tauf}.
 We would expect to follow the desired velocity field more accuratly when $\gamma$ is higher.
-As we can see in figure \ref{fig:trajgazebocirculargamma}, the circles are draw more accuratly for $\gamma=0.5$
+As we can see in figure \ref{fig:trajgazebocirculargamma}, the circles are draw more accurately for $\gamma=0.5$.
 When the field is not smooth enough, increasing gamma may cause instability because the desired attitude will change faster according to the direction of the desired
 velocity field and if those changes are too fast, the quad may turn over on its back and fall to the ground. This root cause of this problem is the underactuation of the quad and its lack of stability for high pitches.
 We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher the $\gamma$ the lower the $\beta$ error. This is expected as higher gamma means faster convergence to the desired velocity field.
@@ -195,12 +197,12 @@ We can see in figure \ref{fig:trajtracknodragwrench} that the wrench is injectin
 This experience also motivates injecting an initial energy into the system. However, it is hard to finetune the linear drag coefficient together with the amount of injected energy.
 We could not run the wrench experiment for more than 100 seconds because the quad crashes. We can see one of the reasons why the crash occurs in figure \ref{fig:velgazebocircularfwrench}: The velocity of the flywheel is diverging, and the translational velocity of the quadcopter is also increasing. 
 This experiments shows that it is crucial to carefully select the linear drag terms because we might lose the passivity properties of the controller when it is too high.
-This experiments also shows how robust the controller is for passive countour following when external forces are applied on the quadcopter.
+This experiments also shows how robust the controller is for passive contour following when external forces are applied on the quadcopter.
 \subsection{Potential sink Field}
 In the following experiment, we will study the behavior of PVFC when the desired velocity field is the sink potential field described in section 3.
 In this section, PVFC will be under the regime of 2 successive potential sink field: The first one is a sink at point $(0,0,0.5)$ (only $+\hat{z}$) to gain altitude and
 the second one is a sink at point $(5,0,0.5)$ to reach the desired target point. 
-It should be noted that the linear force compensation had to be multuplied by ~4 in the potential sink experiments to accuratly follow the desired field.
+It should be noted that the linear force compensation had to be multiplied by ~4 in the potential sink experiments to accuratly follow the desired field.
 This may be caused by the decreasing norm of the potential field when approaching the desired target point while the norm of the circular field is only affected by the distance from the quad to the closest point on the circle.  
 \subsubsection{Ebar study}
 \begin{figure}[h!]

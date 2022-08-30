@@ -41,6 +41,7 @@ The desired velocity fields are computed using Sympy (A Python library for symbo
 In this implementation, we are using a real world quadrotor called IRIS quad provided in the Pixhawk 4 SITL package. 
 The dynamics are evolved and computed by Gazebo. 
 The implementation is divided in 2 ROS Nodes, 1 ROS-PCL Node, 1 Gazebo-ROS plugin, and 1 Pixhawk 4/MAVROS node.
+A diagram of the implementation is shown in figure \ref{fig:implementationdiagram}.
 \subsubsection{Velocity Field ROS Node}
 This node subscribes to the mavros odometry topic, computes the velocity field at the current position and publishes the desired field and field gradient. 
 We implemented all the velocity field using the symbolic math library SymEngine so that all gradient computations from potential or shaping function would be done automatically. 
@@ -70,7 +71,7 @@ This node reuses the code of the vaccuum arm of Gazebo, but it was modified so t
 
 \begin{figure*}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Images/implementation diagram.jpg}
+    \includegraphics[width=\linewidth]{Images/implementation diagram.png}
     \caption{implementation diagram}
     \label{fig:implementationdiagram}
 \end{figure*}
