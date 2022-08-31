@@ -2,17 +2,17 @@
 \subsection{Designed velocity Field for planning task}
 A velocity field is a function taking as input a state, $q$ and returns a 3-dimensional desired velocity vector $(u,v,w)$.\\ It describes a path (a function of position) as opposed to a trajectory (function of position and time).
 \subsubsection{Sink field for reaching the target}
-In \cite{mcinnes2003velocity}, the author chose to apply a logarithmic function on the distance between the current position and the goal position as a potential for the sink field. 
+In \cite{mcinnes2003velocity}, the author chooses to apply a logarithmic function on the distance between the current position and the goal position as a potential for the sink field. 
 However, we observed that using such a potential does not allow the robot to safely approach the goal point since when the distance approaches 0, the logarithmic function diverges.
 As a result, we decided to simply use the distance as a potential function :
-\begin{align} % Use & sign to align, use \nonumber to write a line without number.
-    {V}_{3} = {Q}_{3} (({x}_{1}-\tilde{{x}_{1}})^2+({x}_{2}-\tilde{{x}_{2}}))^2 \\ 
+\begin{equation} % Use & sign to align, use \nonumber to write a line without number.
+    {V}_{3} = {Q}_{3} (({x}_{1}-\tilde{{x}_{1}})^2+({x}_{2}-\tilde{{x}_{2}}))^2
     \label{potentialdistance}
-\end{align}
+\end{equation}
 This will allow us to smoothly decrease the velocity of the UAV when approaching the desired goal point.
 Removing the logarithm from the sink potential can be problematic for more complex environment because the field is no longer a solution of the Laplace equation \ref{eq:Laplace} and therefore we lose the guarantees regarding the absence of a local minimum in the velocity field.
 In future works, it would be interesting to use the 2 approaches in the following way: begin planning under the regime of the field described in equation \ref{eqn:potentiallogdistance} to have the guarantee to arrive to the sink point (no local minimum), and when certain conditions are met, 
-such as having the sink point in the field of view, switch to this sink field \ref{potentialdistance} to safely decelerate and make contact smoothly.
+such as having the sink point in the field of view, switch to the sink field described in equation \ref{potentialdistance} to safely decelerate and make contact smoothly.
 \subsubsection{Obstacle repulsive field}
 In our current solution, because of the simplicity of the environment and the convexity of the obstacles, we are only using the type 1 solution described in \cite{mcinnes2003velocity}, we only have a repulsive field normal to the surface of the obstacle.
 The main motivation of using potential velocity field for the obstacles is the simplicity and low complexity of computing those field values in real time. This is particularly useful when the computational capabilities of the onboard computer is limited by a low power consumption ARM CPU. 
