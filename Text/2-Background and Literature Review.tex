@@ -107,7 +107,7 @@ We can see in figure \ref{fig:rotafromshaping} an example of vortex field around
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{Images/rotafromshaping.png}
-    \caption{Solenoidale field from shaping function}
+    \caption{Solenoidal field from shaping function}
     \label{fig:rotafromshaping}
 \end{figure}
 
@@ -118,7 +118,7 @@ It is defined by gain parameters $K_p$, $K_i$, $K_d$.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.48\textwidth]{Images/PID_en.svg.png}
-    \caption{PID block diagram from wikipedia}
+    \caption{PID block diagram from Wikipedia}
     \label{fig:blockpid}
 \end{figure}
 The block diagram \ref{fig:blockpid} illustrate how this works. Let's assume a simple example where controller signals a new output every 1 second. 
@@ -131,4 +131,4 @@ The proportional gain is straightforward, we want to $y(t)$ to get closer to $SP
 However, in an inertial system, we might overshoot the setpoint when only using a proportional term. Therefore, to take into account how fast the error is decreasing (or increasing), we use a derivative term.
 Finally, the integral term is to take into account historical value of the error and decrease the residual error.
 The values of the gain parameters are application dependent.
-In section 4, we will discuss using a PD controler (same as PID but without integral term) to control the attitude of the quadcopter in the Python implementation.
+In section 4, we will discuss using a PD controller (same as PID but without integral term) to control the attitude of the quadcopter in the Python implementation.

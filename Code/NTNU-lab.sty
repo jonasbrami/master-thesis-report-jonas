@@ -46,13 +46,7 @@
     \let\c@author\undefined % These commands are defined by elsearticle
     \let\bibfont\undefined  % and must be undefined to properly load biblatex
 \makeatother
-\RequirePackage[%
-                backend=biber,
-                style=phys,
-                isbn=true,
-                doi=true,
-                sorting=nty
-                ]{biblatex}                                             % Bibliography
+\RequirePackage[numbers]{natbib}                                             % Bibliography
 \RequirePackage{varioref}                                               % U.02
 \RequirePackage[colorlinks]{hyperref}   % must be loaded in the order: varioref, hyperref, cleveref.
 \RequirePackage[english,norsk]{cleveref}                                % U.02 better reference

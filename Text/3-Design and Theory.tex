@@ -10,14 +10,14 @@ As a result, we decided to simply use the distance as a potential function :
     \label{potentialdistance}
 \end{align}
 This will allow us to smoothly decrease the velocity of the UAV when approaching the desired goal point.
-Removing the logarithm from the sink potential can be problematic for more complex environement because the field is no longer a solution of the Laplace equation \ref{eq:Laplace} and therefore we lose the guarantees regarding the absence of a local minimum in the velocity field.
+Removing the logarithm from the sink potential can be problematic for more complex environment because the field is no longer a solution of the Laplace equation \ref{eq:Laplace} and therefore we lose the guarantees regarding the absence of a local minimum in the velocity field.
 In future works, it would be interesting to use the 2 approaches in the following way: begin planning under the regime of the field described in equation \ref{eqn:potentiallogdistance} to have the guarantee to arrive to the sink point (no local minimum), and when certain conditions are met, 
 such as having the sink point in the field of view, switch to this sink field \ref{potentialdistance} to safely decelerate and make contact smoothly.
 \subsubsection{Obstacle repulsive field}
-In our current solution, because of the simplicity of the environement and the convexity of the obstacles, we are only using the type 1 solution described in \cite{mcinnes2003velocity}, we only have a repulsive field normal to the surface of the obstacle.
+In our current solution, because of the simplicity of the environment and the convexity of the obstacles, we are only using the type 1 solution described in \cite{mcinnes2003velocity}, we only have a repulsive field normal to the surface of the obstacle.
 The main motivation of using potential velocity field for the obstacles is the simplicity and low complexity of computing those field values in real time. This is particularly useful when the computational capabilities of the onboard computer is limited by a low power consumption ARM CPU. 
-Using potential based methods for the repulsive velocity field implementing obstacle avoidance is very efficient when there is a large amount of abstacles: When a new obstacle is detected/removed, we just need to add/remove its potential for the sum of current potentials.
-\subsubsection{Spherical field to maintain desired force }
+Using potential based methods for the repulsive velocity field implementing obstacle avoidance is very efficient when there is a large amount of obstacles: When a new obstacle is detected/removed, we just need to add/remove its potential for the sum of current potentials.
+\subsubsection{Spherical field to maintain desired force}
 When contact has been made, we suppose that the surface static friction coefficient is high enough to maintain the contact.
 Since the arm has a fixed size and does not move, this section will describe a velocity field on the surface of a sphere around the target point with a radius defined by the distance between the CoM of the quadcopter and the tip of the arm.\\
 First we need to compute the feasible position of the CoM to apply the desired force. 
@@ -26,7 +26,7 @@ We can generate the velocity field on the surface of the sphere to point on the 
 This field will have an amplitude proportional to the distance from this point.
 The planning strategy we described would also allow us to define a desirable range for the yaw and pitch angles depending on the type of sensor and on the friction coefficient of the target surface.
 Now we are going to describe how the spherical field is computed. 
-Let us recall that the cartesian to spherical coordinate change of variable is defined as
+Let us recall that the Cartesian to spherical coordinate change of variable is defined as
 \begin{equation} 
     r = \sqrt{x^2+y^2+z^2}\\ \nonumber 
 \end{equation}
@@ -95,15 +95,15 @@ From there it is straightforward how to implement a circular velocity field with
 \end{align}
 \subsection{Quadcopter modeling}
 \subsubsection{Platform}
-Similarly to the platform used in ``An Aerial Parallel Manipulator with Shared Compliance`` \cite{Stephens2022}, the system is composed of two subsytems: The underactuated quadrotor base (for which we have software in the loop integration given by PX4) and the fixed manipulator arm above the center of mass of the quad.
-This system is underactued because in the base frame of this quad, the only thrust direction for the quadcopter is in the $z$ axis in the frame of the base of the quad, the rotors cannot move relative to the base of the quad. Therefore, the IRIS model control inputs are a quarternion vector and a thrust amplitude. However, the output of the passive controller for the non-augmented translational domain is a thrust vector $\Lambda \in\mathbb R_3 $, therefore we will need to convert this desired thrust to the desired format.
-In addition to the fixed manipulator arm, a depth camera is mounted on the quad base. We use the depth camera model provided by Pixhawk 4 with IRIS that simulates an intel realsense r200. We use the transform provided in the PX4 obstacle avoidance package to transform from the frame of the camera to the frame of the quadcopter base, and we use the PX4 odometry information to transform from the base to the ground gazebo frame.
+Similarly to the platform used in ``An Aerial Parallel Manipulator with Shared Compliance`` \cite{Stephens2022}, the system is composed of two subsystems: The underactuated quadrotor base (for which we have software in the loop integration given by PX4) and the fixed manipulator arm above the center of mass of the quad.
+This system is underactuated because in the base frame of this quad, the only thrust direction for the quadcopter is in the $z$ axis in the frame of the base of the quad, the rotors cannot move relative to the base of the quad. Therefore, the IRIS model control inputs are a quaternion vector and a thrust amplitude. However, the output of the passive controller for the non-augmented translational domain is a thrust vector $\Lambda \in\mathbb R_3 $, therefore we will need to convert this desired thrust to the desired format.
+In addition to the fixed manipulator arm, a depth camera is mounted on the quad base. We use the depth camera model provided by Pixhawk 4 with IRIS that simulates an Intel Realsense r200. We use the transform provided in the PX4 obstacle avoidance package to transform from the frame of the camera to the frame of the quadcopter base, and we use the PX4 odometry information to transform from the base to the ground gazebo frame.
 
 \subsubsection{Translational dynamics}
 
-The dynamics that we take into account in our passive control strategy are only in the translational domain. The passive velocity field controller output is a thurst vector and PX4 translates this desired thurst into actual angular velocities for each one of the rotors 
+The dynamics that we take into account in our passive control strategy are only in the translational domain. The passive velocity field controller output is a thrust vector and PX4 translates this desired thrust into actual angular velocities for each one of the rotors 
 $\Omega = (\bar{\omega_1}, \bar{\omega_2}, \bar{\omega_3}, \bar{\omega_4})$. PVFC only acts on the translational level and not at the rotational level and therefore the passivity of this controller is only at the translational level. 
-This quadcopter is an underactuacted system because for a given translational velocity, only a subset of attitudes are feasible. As a result, it is not possible to control all 6 degrees of freedom independantly (3 translational, 3 rotational).
+This quadcopter is an underactuacted system because for a given translational velocity, only a subset of attitudes is feasible. As a result, it is not possible to control all 6 degrees of freedom independently (3 translational, 3 rotational).
  
 \subsection{Passive Velocity Field Control of Mechanical Manipulators}
 In \cite{li1999passive}, the author explains the advantages of encoding a contour following task using velocity fields. 
@@ -134,7 +134,7 @@ One of the most important priorities of PVFC is that when no external forces are
 \end{equation}
 In other words, PVFC does not seek to exactly match the desired velocity field but just an $\alpha$ scaled version of it. The $\alpha$ we are going to converge to is a function of the energy in the augmented system and the energy in the desired velocity field.
 \subsubsection{Passivity}
-The controller presented in this paper is based on energy control theory and allows energy transfer between the environement and the augmented system.
+The controller presented in this paper is based on energy control theory and allows energy transfer between the environment and the augmented system.
 Passivity allows dissipation from the energy input to the system into the augmented system. \\
 To present this concept, the author first defines the notion of a passive dynamic system:\\
 A dynamic system with input $u \in U$ and output $y \in Y$ is passive with respect to the supply rate 
@@ -153,7 +153,7 @@ Let us remember that the work $W$ and power $P$ of a force $F$ on a point mass o
 Therefore the supply rate  $s(\tau_{tot},\dot{q})=\tau_{tot}^{T}\dot{q}$ can be seen as the total mechanical power input. Here the input $\tau_{tot}$ is the total force exerted on the manipulator 
 and the output $\dot{q}$ is the velocity of the manipulator. 
 
-When considering a feedback system interacting with the environement shown in figure \ref{fig:pvfccontrolloop}, we can decompose $\tau_{tot}=\tau_{e}+\tau$ (where $\tau$ and $\tau_{e}$ are respectively the forces generated by the actuators and the external forces, for example the contact force when touching a surface),
+When considering a feedback system interacting with the environment shown in figure \ref{fig:pvfccontrolloop}, we can decompose $\tau_{tot}=\tau_{e}+\tau$ (where $\tau$ and $\tau_{e}$ are respectively the forces generated by the actuators and the external forces, for example the contact force when touching a surface),
 we can derive the power generated by external forces as $s(\tau_{e}\dot{q})=\tau_{e}^T \dot{q}$. 
 \begin{figure}[h!]
     \centering
@@ -174,7 +174,7 @@ The dimensionality of the manifold is then increased by one to include the state
     \bar{V} = [V, V_{\text{fly}}]
 \end{align}
 
-Using such passitive and dissipative systems enables safe interaction between the robot and its environement since the total kinetical energy of the system is bounded by the system initial kinetic energy and energy input from the environement.
+Using such passive and dissipative systems enables safe interaction between the robot and its environment since the total kinetic energy of the system is bounded by the system initial kinetic energy and energy input from the environment.
 
 \subsubsection{Augmented dynamics}
 Let us now describe the dynamics of the augmented system
@@ -239,17 +239,17 @@ From there the author derived the two terms of the coupling control law:
     \bar{\tau_f} = \gamma(\bar{P}\bar{p}^T - \bar{p}\bar{P}^T ) \dot{\bar{q}} \label{tauf}\\
 \end{align}
 the $\tau_f$ term is the feedback term, while $\tau_c$ is the term enforcing passivity and allowing to dissipate external forces work into the quadcopter.
-The anti-symmetric structure of the matrices multiplying $\dot{\bar{q}}$ is key to proving that the derivative of the kinetic energy in the augmented system is: 
+The antisymmetric structure of the matrices multiplying $\dot{\bar{q}}$ is key to proving that the derivative of the kinetic energy in the augmented system is: 
 \begin{equation}
     \frac{d}{dt}k(\bar{q}, \dot{\bar{q}}) = \tau_e^T(t)\dot{q}(t) \label{kineticdt}
 \end{equation}
-This is done by introducing the concepts of compatibility between a metric defining an inner product and an affine connection. It is shown in \cite{li2001passive} that the compatibility between the Levi-Civita connection with the metric defined by $M$ has a direct link between anti-symmetricity of the matrices in the control coupling law, passivity and energy conservation.
+This is done by introducing the concepts of compatibility between a metric defining an inner product and an affine connection. It is shown in \cite{li2001passive} that the compatibility between the Levi-Civita connection with the metric defined by $M$ has a direct link with antisymmetric matrices in the control coupling law, passivity and energy conservation.
 
 From equations \ref{kineticdt} and \ref{passivityCondition}, the passivity of the system with respect to external forces is straightforward.
 
 \subsection{Compensation terms}
 When using PVFC with the quadcopter dynamics, it is important to model the effect of drag and gravity on the robot to be able to compensate for them. If those forces are not taken into account, the robot total mechanical energy will decrease until it arrives to a complete stop. 
 Therefore, to ensure the robot will continue to follow the desired velocity field, we have to introduce compensation terms for gravity and air drag. 
-For simplicity, we chose to model drag as a linear function of the velocity. This worked for our proof of concept but this method 
+For simplicity, we chose to model drag as a linear function of the velocity. This worked for our proof of concept, but this method 
 shows its limits when running the simulation for a greater amount of time because not only drag is not exactly proportional to the speed, but we have no straightforward way of estimating those drag coefficients.
-Setting them too high will make our control ouput diverge but setting it too low will make to quad stop following the desired velocity field.  
+Setting them too high will make our control output diverge but setting it too low will make to quad stop following the desired velocity field.  

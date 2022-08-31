@@ -1,10 +1,10 @@
-\newlength{\bibsep}
-\documentclass[nonatbib,1p,a4paper]{elsarticle}  % 5p for two columns, 1p for 1 column (this is specific for the elsearticle)
+\documentclass[a4paper,10pt]{article}  % 5p for two columns, 1p for 1 column (this is specific for the elsearticle)
 \usepackage[english,norsk,nynorsk]{babel}        % Language
 \usepackage[DatePublished]{Code/NTNU-lab}        % remove [DatePublished] to remove dates
 \usepackage{csquotes}                            % Must be loaded when babel is loaded to avoid error.
 \input{Code/preamble}                            % Write all preamble code in this file to keep it organised and tidy.
-\addbibresource{Bibliography/Sources.bib}        % Selects the Bibliography file.
+% \bibliographystyle{vancouver}
+% \addbibresource{Bibliography/Sources.bib}        % Selects the Bibliography file.
 
 
 \begin{document}
@@ -26,8 +26,8 @@
 
 % Bibliography
 %--------------------
-\printbibliography
-
+\bibliographystyle{unsrtnat}
+\bibliography{Bibliography/Sources.bib}
 \end{document}
 
 % Copyright Remarks:

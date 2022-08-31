@@ -57,7 +57,7 @@ We can observe how energy is being traded between the quad and the flywheel when
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/python-nodrag.png}
-   \caption{trajectory and mechanical energy without drag }
+   \caption{Trajectory and mechanical energy without drag }
    \label{fig:pythonnodrag}
 \end{figure*}
 It should also be noted that the desired path is exactly followed in opposition to the last experiment with drag compensation (see figure \ref{fig:trajtracknodrag}).
@@ -67,7 +67,7 @@ It should also be noted that the desired path is exactly followed in opposition 
    \caption{Trajectory tracking without drag}
    \label{fig:trajtracknodrag}
 \end{figure}
-We explained in section 3 that PVFC has interesting properties regarding the velocity tracking error (eq \ref{alphaerror}). 
+We explained in section 3 that PVFC has interesting properties regarding the velocity tracking error (equation \ref{alphaerror}). 
 In \cite{li1999passive}, the author explains that when no external forces are applied on the quadcopter, $\alpha$ should approach the square root of $\beta^2 = \frac{\text{augmented mechanical energy}}{\text{augmented desired mechanical energy}}$.\\
 In addition, when $\alpha$ approaches $\beta$, the $\alpha$ error should approach 0.
 
@@ -88,10 +88,10 @@ and finally we let the quad follow the desired field for 120 seconds.
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/python-nodrag-wrench.png}
-   \caption{trajectory and mechanical energy without drag and with wrench - Python POC }
+   \caption{Trajectory and mechanical energy without drag and with wrench - Python POC }
    \label{fig:pythonnodragwrench}
 \end{figure*}
-The passivity properties of PVFC are well shown in figure \ref{fig:pythonnodragwrench}. We can see how the quadcopter is trading energy with the environement and dissipating the work of the wrench into the augmented system.
+The passivity properties of PVFC are well shown in figure \ref{fig:pythonnodragwrench}. We can see how the quadcopter is trading energy with the environment and dissipating the work of the wrench into the augmented system.
 This experiment also exemplifies well the advantage of using velocity field instead of a traditional trajectory following based controller:
 \begin{figure}[h!]
    \centering
@@ -146,19 +146,19 @@ We can also from figure \ref{fig:betaerrorgazebocirculargamma} that the higher t
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_gamma_circular.png}
-   \caption{circular field trajectory Gazebo - $\gamma$ experiment}
+   \caption{Circular field trajectory Gazebo - $\gamma$ experiment}
    \label{fig:trajgazebocirculargamma}
 \end{figure*}
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_circular_gamma_V.png}
-   \caption{circular field velocity comparison Gazebo - $\gamma$ experiment}
+   \caption{Circular field velocity comparison Gazebo - $\gamma$ experiment}
    \label{fig:velgazebocirculargamma}
 \end{figure*}
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_betaerror_gamma_circular.png}
-   \caption{circular field $\beta$ error Gazebo - $\gamma$ experiment}
+   \caption{Circular field $\beta$ error Gazebo - $\gamma$ experiment}
    \label{fig:betaerrorgazebocirculargamma}
 \end{figure*}
 \subsubsection{force compensation study}
@@ -169,13 +169,13 @@ We can see how essential is this compensation term in the figures \ref{fig:velga
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_fcomp_circular.png}
-   \caption{circular field trajectory Gazebo - drag compensation experiment}
+   \caption{Circular field trajectory Gazebo - drag compensation experiment}
    \label{fig:trajgazebocircularfcomp}
 \end{figure*}
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_circular_fcomp_V.png}
-   \caption{circular field velocity comparison Gazebo - drag compensation experiment}
+   \caption{Circular field velocity comparison Gazebo - drag compensation experiment}
    \label{fig:velgazebocircularfcomp}
 \end{figure*}
 \subsubsection{World with Wrench}
@@ -185,13 +185,13 @@ We will compare it with an experiment in the same conditions but without force w
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_wrench_circular.png}
-   \caption{circular field trajectory Gazebo - Wrench experiment}
+   \caption{Circular field trajectory Gazebo - Wrench experiment}
    \label{fig:trajgazebocircularfwrench}
 \end{figure*}
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_circular_wrench_V.png}
-   \caption{circular field velocity comparison Gazebo - Wrench experiment}
+   \caption{Circular field velocity comparison Gazebo - Wrench experiment}
    \label{fig:velgazebocircularfwrench}
 \end{figure*}
 We can see in figure \ref{fig:trajtracknodragwrench} that the wrench is injecting energy into the augmented system and that PVFC performs much better in terms of velocity field tracking when it is dissipating this external work into the augmented system. 
@@ -210,12 +210,12 @@ This may be caused by the decreasing norm of the potential field when approachin
 \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_ebar_potential_2d.png}
-   \caption{potential field velocity 2d trajectory comparison Gazebo - ebar experiment}
+   \caption{Potential field velocity 2d trajectory comparison Gazebo - $\bar{E}$ experiment}
    \label{fig:vel2dgazeboebarpotential}
 \end{figure}
 We can see that the trajectories in the $\hat{x}$ and $\hat{y}$ axis are more stable around the desired state when $\bar{E}=200$.
 However, if we set $\bar{E}$ to be too small, the desired speed of the flywheel (see equation \ref{eqn:vfly}) may not be a real number which will cause the controller to stop working.
-Therefore, it is important to finetune this parameter according to the desired velocity field such that it would be the minimum necessary to have a real flywheel desired velocity.
+Therefore, it is important to tune this parameter according to the desired velocity field such that it would be the minimum necessary to have a real flywheel desired velocity.
 It should also be noted that the spike in the $\beta$ error when switching field is higher when $\bar{E}$ is small (see figure \ref{fig:betaerrorgazebopotentialebar})
 \begin{figure*}[h!]
    \centering
@@ -224,12 +224,12 @@ It should also be noted that the spike in the $\beta$ error when switching field
    \label{fig:betaerrorgazebopotentialebar}
 \end{figure*}
 
-\subsubsection{force compensation study}
+\subsubsection{Force compensation study}
 Similar to our circular field experiment, approximating the drag compensation term is essential to properly following the desired velocity field. 
 \begin{figure*}[h!]
    \centering
    \includegraphics[width=\linewidth]{Images/gazebo_trajectory_fcomp_potential.png}
-   \caption{circular field trajectory Gazebo - drag compensation experiment}
+   \caption{Circular field trajectory Gazebo - drag compensation experiment}
    \label{fig:trajgazebopotentialfcomp}
 \end{figure*}
 We can see that when no drag compensation is used, the augmented quadcopter system loses all of its mechanical energy and is unable to follow the desired potential field (see figure \ref{fig:trajgazebopotentialfcomp})
@@ -244,7 +244,7 @@ This experiment is taking place in 4 phases:
    \item When the wall has been reached and contact has been made between the arm and the wall, the modified grasping arm plugin from gazebo will activate for 10 seconds.
    \item After the grasping arm disengages, a signal is sent to the velocity field node to update the sink field with a sink point on the floor close to the wall.
 \end{enumerate}
-A state machine is implemented in the velocity field node to switch and chosoe the right velocity field for each step. 
+A state machine is implemented in the velocity field node to switch to the right velocity field for each step. 
 A \href{https://www.youtube.com/watch?v=bR4PmFp38t0}{video} of this Gazebo experiment was published to Youtube. (Please watch with subtitles)
 Let us analyse the $\beta$ error and trajectory of this experiment.
 We can see in figure \ref{fig:trajgazebosensor} that the flywheel energy is stable when reaching the wall and increasing when contact is made. This is because the passivity of PVFC dissipates the work of the wall into the augmented system.
